@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  postgres:
+    image: postgres:11.6
+    volumes:
+      - ./postgres/datadir:/var/lib/postgresql/data
+      - ./postgres/init/:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+
+  keycloak:
+    image: jboss/keycloak:8.0.1
+    command: ["-b", "0.0.0.0", "--debug"]
+    volumes:
+      - ${KEYCLOAK_REALM_JSON}:/tmp/realm-export.json
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak_db
+      DB_USER: keycloak_user
+      DB_PASSWORD: keycloak_pass
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      KEYCLOAK_IMPORT: '/tmp/realm-export.json'
+
+    ports:
+      - 8181:8080
+      - 6006:8787
+    depends_on:
+      - postgres

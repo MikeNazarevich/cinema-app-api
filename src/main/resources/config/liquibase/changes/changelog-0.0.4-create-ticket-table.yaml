@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - logicalFilePath: config/liquibase/changes/changelog-0.0.4-create-ticket-table.yaml
+
+  - changeSet:
+      id: 1
+      author: mikhail
+      comment: "Create Ticket table"
+      changes:
+        - createTable:
+            tableName: ticket
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: range
+                  type: BIGINT
+              - column:
+                  name: place
+                  type: BIGINT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: created_by
+                  type: varchar(100)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: updated_by
+                  type: varchar(100)
+              - column:
+                  name: movie_session_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ticket_movie_session
+                    references: movie_session(id)
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ticket_user
+                    references: users(id)
+
+  - changeSet:
+      id: 2
+      author: mikhail
+      comment: "Add ticket"
+      changes:
+        - insert:
+            tableName: ticket
+            columns:
+              - column:
+                  name: movie_session_id
+                  value: 1
+              - column:
+                  name: range
+                  value: 1
+              - column:
+                  name: place
+                  value: 2
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: created_at
+                  value: "2020-01-01 09:10:10"
+              - column:
+                  name: created_by
+                  value: mikhail
+              - column:
+                  name: updated_at
+                  value: "2020-01-01 10:10:10"
+              - column:
+                  name: updated_by
+                  value: mikhail

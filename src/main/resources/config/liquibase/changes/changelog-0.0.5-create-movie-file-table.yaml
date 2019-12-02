@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - logicalFilePath: config/liquibase/changes/changelog-0.0.5-create-movie-file-table.yaml
+
+  - changeSet:
+      id: 1
+      author: mikhail
+      comment: "Create Ticket table"
+      changes:
+        - createTable:
+            tableName: movie_file
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: file_path
+                  type: varchar(100)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: url
+                  type: varchar(100)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: mime_type
+                  type: varchar
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: created_by
+                  type: varchar(100)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: updated_by
+                  type: varchar(100)

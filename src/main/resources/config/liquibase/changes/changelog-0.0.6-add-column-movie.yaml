@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - logicalFilePath: config/liquibase/changes/changelog-0.0.6-add-column-movie.yaml
+  - changeSet:
+      id: addColumn-movie
+      author: mikhail
+      changes:
+        - addColumn:
+            tableName: movie
+            columns:
+              - column:
+                  name: url
+                  type: varchar(100)

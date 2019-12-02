@@ -1,0 +1,41 @@
+{
+  "realm": "cinema",
+  "enabled": true,
+  "sslRequired": "external",
+  "defaultRoles": [ "user" ],
+  "users" : [
+    {
+      "username" : "user",
+      "enabled": true,
+      "email" : "user@mail.com",
+      "firstName": "FNUser",
+      "lastName": "LNUser",
+      "credentials" : [
+        { "type" : "password",
+          "value" : "password" }
+      ]
+    }
+  ],
+  "roles" : {
+    "realm" : [
+      {
+        "name": "user",
+        "description": "User privileges"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "cinema-app",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "11111111-1111-1111-1111-111111111111",
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect"
+    }
+  ]
+}
