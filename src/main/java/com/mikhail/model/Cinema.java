@@ -14,6 +14,7 @@ import java.util.Set;
 @Setter
 @Table(name = "cinema")
 @Entity
+// TODO I CREATE MY CINEMA, WHAT I NEED
 public class Cinema extends UpdatedInformation {
 
     @Id
@@ -22,6 +23,9 @@ public class Cinema extends UpdatedInformation {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String location;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "cinema_movies",

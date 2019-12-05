@@ -26,4 +26,11 @@ public class Movie extends UpdatedInformation {
 
     @Size(max = 100)
     private String producer;
+
+    @Size(max = 150)
+    private String description;
+
+    @OneToOne
+    @MapsId
+    private MovieSession movieSession;
 }
