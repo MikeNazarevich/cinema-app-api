@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +31,8 @@ public class Movie extends UpdatedInformation {
     @Size(max = 150)
     private String description;
 
-    @OneToOne
-    @MapsId
-    private MovieSession movieSession;
+    @OneToMany(mappedBy = "movie",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<MovieSession> movieSession;
 }

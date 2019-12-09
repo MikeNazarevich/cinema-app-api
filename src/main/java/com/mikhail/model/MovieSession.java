@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class MovieSession extends UpdatedInformation {
     @Column(name = "movie_date")
     private LocalDateTime movieDate;
 
-    @OneToOne(mappedBy = "movie_session")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 }

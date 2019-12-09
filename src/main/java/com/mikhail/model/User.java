@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +31,7 @@ public class User extends UpdatedInformation {
 
     @NotBlank
     @NaturalId
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
