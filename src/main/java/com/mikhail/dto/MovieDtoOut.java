@@ -1,11 +1,11 @@
-package com.mikhail;
+package com.mikhail.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MovieDto {
+public class MovieDtoOut {
 
     private Long movieId;
     private String name;

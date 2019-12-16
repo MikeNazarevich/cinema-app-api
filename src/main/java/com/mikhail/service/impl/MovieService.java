@@ -1,4 +1,4 @@
-package com.mikhail.service;
+package com.mikhail.service.impl;
 
 import com.mikhail.model.Movie;
 import com.mikhail.repository.MovieRepository;
@@ -15,6 +15,10 @@ public class MovieService {
 
     public List<Movie> findAllMovies() {
         return movieRepository.findAll();
+    }
+
+    public Movie findMovie(Long id) {
+        return movieRepository.getOne(id);
     }
 
 

@@ -1,13 +1,21 @@
 package com.mikhail.mapper;
 
-import com.mikhail.MovieDto;
+import com.mikhail.dto.MovieDtoIn;
+import com.mikhail.dto.MovieDtoOut;
 import com.mikhail.model.Movie;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
-public interface MovieMapper {
+import java.util.List;
 
-    @Mapping(source = "id", target = "movieId")
-    MovieDto fromJpa (Movie movie);
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+public interface MovieMapper extends DtoMapper<MovieDtoIn, MovieDtoOut, Movie> {
+
+    @Mapping(target = "movieId", source = "id")
+    MovieDtoOut toOut(Movie movie);
+
+    List<MovieDtoOut> toOut(List<Movie> movies);
+
+    Movie fromIn(MovieDtoIn dtoIn);
 }
