@@ -1,4 +1,4 @@
-package com.mikhail.dto;
+package com.mikhail.dto.movie;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package com.mikhail.controller;
 
-import com.mikhail.dto.MovieDtoIn;
-import com.mikhail.dto.MovieDtoOut;
+import com.mikhail.dto.movie.MovieDtoIn;
+import com.mikhail.dto.movie.MovieDtoOut;
 import com.mikhail.mapper.MovieMapper;
 import com.mikhail.service.impl.MovieService;
 import lombok.RequiredArgsConstructor;

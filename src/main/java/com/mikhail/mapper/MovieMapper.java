@@ -1,7 +1,7 @@
 package com.mikhail.mapper;
 
-import com.mikhail.dto.MovieDtoIn;
-import com.mikhail.dto.MovieDtoOut;
+import com.mikhail.dto.movie.MovieDtoIn;
+import com.mikhail.dto.movie.MovieDtoOut;
 import com.mikhail.model.Movie;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
