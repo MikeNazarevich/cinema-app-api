@@ -25,9 +25,10 @@ public class User extends UpdatedInformation {
     private Long id;
 
     @NotBlank
-    @NaturalId
-    @Column(nullable = false, unique = true)
-    private String username;
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
 
     @NotBlank
     @NaturalId

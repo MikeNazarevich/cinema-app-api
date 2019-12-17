@@ -26,10 +26,13 @@ public class UserService {
         return userMapper.toOut(userRepository.findAll());
     }
 
-    public User addUser(UserRegInfoDtoIn regInfoDtoIn) {
+    public void registerUser(UserRegInfoDtoIn regInfoDtoIn) {
         User user = new User();
+        userMapper.merge(regInfoDtoIn, user);
+        userRepository.save(user);
+    }
 
-        userMapper.fromIn(regInfoDtoIn);
-        return userMapper.
+    public void deleteUserById(Long id) {
+        userRepository.delete(userRepository.getOne(id));
     }
 }

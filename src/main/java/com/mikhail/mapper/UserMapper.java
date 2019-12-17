@@ -3,9 +3,11 @@ package com.mikhail.mapper;
 import com.mikhail.dto.user.UserDtoIn;
 import com.mikhail.dto.user.UserFullInfoDtoOut;
 import com.mikhail.dto.user.UserLiteDtoOut;
+import com.mikhail.dto.user.UserRegInfoDtoIn;
 import com.mikhail.model.User;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.Optional;
 
@@ -15,5 +17,7 @@ public interface UserMapper extends DtoMapper<UserDtoIn, UserLiteDtoOut, User> {
     UserLiteDtoOut toOut(User user);
 
     UserFullInfoDtoOut toOutFull(Optional<User> user);
+
+    void merge(UserRegInfoDtoIn regInfoDtoIn, @MappingTarget User user);
 
 }
