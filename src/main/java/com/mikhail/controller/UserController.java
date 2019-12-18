@@ -3,14 +3,12 @@ package com.mikhail.controller;
 import com.mikhail.dto.user.UserFullInfoDtoOut;
 import com.mikhail.dto.user.UserLiteDtoOut;
 import com.mikhail.dto.user.UserRegInfoDtoIn;
+import com.mikhail.dto.user.UserUpdateInfo;
 import com.mikhail.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,6 +38,13 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<Void> updateUser(@PathVariable Long id,
+                                           @RequestBody @Valid UserUpdateInfo updateInfo) {
+        userService.updateUser(id, updateInfo);
         return ResponseEntity.ok().build();
     }
 }
