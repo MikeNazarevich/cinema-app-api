@@ -7,13 +7,13 @@ import com.mikhail.dto.user.UserUpdateInfo;
 import com.mikhail.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@CrossOrigin
+@RestController
 @RequiredArgsConstructor
 public class UserController {
 
@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public UserFullInfoDtoOut findById(@PathVariable Long id) {
-        return userService.findById(id);
+        return userService.findUserById(id);
     }
 
     @GetMapping("/users")

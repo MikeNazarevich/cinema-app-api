@@ -4,6 +4,7 @@ import com.mikhail.dto.user.UserFullInfoDtoOut;
 import com.mikhail.dto.user.UserLiteDtoOut;
 import com.mikhail.dto.user.UserRegInfoDtoIn;
 import com.mikhail.dto.user.UserUpdateInfo;
+import com.mikhail.exceptionHandler.ResourceNotFoundException;
 import com.mikhail.mapper.UserMapper;
 import com.mikhail.model.User;
 import com.mikhail.repository.UserRepository;
@@ -19,8 +20,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserFullInfoDtoOut findById(Long id) {
-        return userMapper.toOutFull(userRepository.findById(id));
+    private User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("user not found"));
+    }
+
+    public UserFullInfoDtoOut findUserById(Long id) {
+        return userMapper.toOutFull(findById(id));
     }
 
     public List<UserLiteDtoOut> getAll() {
@@ -38,8 +44,7 @@ public class UserService {
     }
 
     public void updateUser(Long id, UserUpdateInfo updateInfo) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new Exception(String.format("cant find")));
+        User user = findById(id);
         userMapper.merge(updateInfo, user);
         userRepository.save(user);
 

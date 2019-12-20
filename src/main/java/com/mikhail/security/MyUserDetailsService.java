@@ -21,16 +21,13 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("No user found with email: " + email));
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword().toLowerCase()
-        )
+        return new MyUserPrincipal(user);
     }
 
-    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException("User not found with id: " + id)
-        );
-        return user;
-    }
+//    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
+//        User user = userRepository.findById(id).orElseThrow(
+//                () -> new UsernameNotFoundException("User not found with id: " + id)
+//        );
+//        return user;
+//    }
 }

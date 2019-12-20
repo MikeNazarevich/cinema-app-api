@@ -1,16 +1,18 @@
 package com.mikhail.controller;
 
-import com.mikhail.dto.movie.MovieDtoIn;
 import com.mikhail.dto.movie.MovieDtoOut;
 import com.mikhail.mapper.MovieMapper;
 import com.mikhail.service.impl.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class MovieController {
@@ -28,10 +30,10 @@ public class MovieController {
         return ResponseEntity.ok().body(mapper.toOut(movieService.findMovie(movieId)));
     }
 
-    @PostMapping("/movies")
-    public ResponseEntity<MovieDtoOut> addMovie(
-            @RequestBody @Valid MovieDtoIn dtoIn) {
+//    @PostMapping("/movies")
+//    public ResponseEntity<MovieDtoOut> addMovie(
+//            @RequestBody @Valid MovieDtoIn dtoIn) {
 //        MovieDtoOut dtoOut = movieService.
 //        return ResponseEntity.created()/
-    }
+//    }
 }

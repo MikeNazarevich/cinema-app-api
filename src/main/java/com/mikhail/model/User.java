@@ -32,6 +32,11 @@ public class User extends UpdatedInformation {
 
     @NotBlank
     @NaturalId
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @NotBlank
+    @NaturalId
     @Email
     @Column(nullable = false, unique = true)
     private String email;

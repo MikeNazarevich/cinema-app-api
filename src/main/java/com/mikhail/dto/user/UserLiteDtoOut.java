@@ -10,4 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserLiteDtoOut {
+
+    private String fullName;
+
+    private String email;
 }
