@@ -25,10 +25,10 @@ public class User extends UpdatedInformation {
     private Long id;
 
     @NotBlank
-    private String firstName;
+    private String name;
 
     @NotBlank
-    private String lastName;
+    private String surname;
 
     @NotBlank
     @NaturalId

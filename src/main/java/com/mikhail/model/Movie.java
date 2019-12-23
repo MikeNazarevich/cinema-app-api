@@ -21,7 +21,7 @@ public class Movie extends UpdatedInformation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 50)
+    @Size(max = 100)
     @Column(nullable = false)
     private String name;
 
