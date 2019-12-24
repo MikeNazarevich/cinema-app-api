@@ -1,21 +1,23 @@
 package com.mikhail.dto.user;
 
 import com.mikhail.validator.ValidPassword;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserRegInfoDtoIn {
 
     @NotBlank
-    private String firstName;
+    private String name;
 
     @NotBlank
-    private String lastName;
+    private String surname;
 
     @NotBlank
     @ValidPassword

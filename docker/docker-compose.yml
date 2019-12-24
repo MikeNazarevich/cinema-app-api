@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    restart: always
+    image: 'postgres:11.5'
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSRGRES_PASSWORD: ''
+      POSTGRES_DB: 'my_dbdata'
+    volumes:
+      - ./docker-entrypoint-initdb.d/schema.sql
+      - ./docker-entrypoint-initdb.d/data.sql
