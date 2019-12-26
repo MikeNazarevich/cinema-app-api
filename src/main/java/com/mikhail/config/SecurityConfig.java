@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/signUp", "/user/register").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
@@ -41,6 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login.html");
+//                .and()
+//                .logout()
+//        .permitAll()
+//        .logoutRequestMatcher(new AntPathRequestMatcher("/doLogout", "GET")).l;
     }
 
     public PasswordEncoder passwordEncoder() {

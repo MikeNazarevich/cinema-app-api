@@ -21,7 +21,9 @@ public class MovieService {
         return movieRepository.getOne(id);
     }
 
-//    public Movie addMovie()
+//    public Movie addMovie(MovieDtoOut movieDtoOut) {
+//
+//    }
 
 
 }

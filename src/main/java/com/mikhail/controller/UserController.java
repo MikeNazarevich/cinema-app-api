@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getAll());
     }
 
-    @PostMapping(value = "/user/registration")
+    @PostMapping(value = "/user/register")
     public ResponseEntity<Void> registerUser(@Valid UserRegInfoDtoIn regInfoDtoIn) {
         userService.registerUser(regInfoDtoIn);
         return ResponseEntity.ok().build();
