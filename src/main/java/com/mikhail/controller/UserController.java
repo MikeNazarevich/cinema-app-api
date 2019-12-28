@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/users/{id}")
-    public UserFullInfoDtoOut findById(@PathVariable Long id) {
+    public UserFullInfoDtoOut findById(@PathVariable final Long id) {
         return userService.findUserById(id);
     }
 
@@ -30,20 +30,20 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/register")
-    public ResponseEntity<Void> registerUser(@Valid UserRegInfoDtoIn regInfoDtoIn) {
+    public ResponseEntity<Void> registerUser(@Valid final UserRegInfoDtoIn regInfoDtoIn) {
         userService.registerUser(regInfoDtoIn);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable final Long id) {
         userService.deleteUserById(id);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable Long id,
-                                           @RequestBody @Valid UserUpdateInfo updateInfo) {
+    public ResponseEntity<Void> updateUser(@PathVariable final Long id,
+                                           @RequestBody @Valid final UserUpdateInfo updateInfo) {
         userService.updateUser(id, updateInfo);
         return ResponseEntity.ok().build();
     }

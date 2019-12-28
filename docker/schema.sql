@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS cinema.movie
     id BIGINT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     producer VARCHAR(100),
-    description VARCHAR(150)
+    description VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS cinema.movie_session

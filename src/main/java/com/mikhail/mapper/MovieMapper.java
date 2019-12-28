@@ -6,6 +6,7 @@ import com.mikhail.model.Movie;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface MovieMapper extends DtoMapper<MovieDtoIn, MovieDtoOut, Movie> {
     List<MovieDtoOut> toOut(List<Movie> movies);
 
     Movie fromIn(MovieDtoIn dtoIn);
+
+    void merge(MovieDtoIn dtoIn, @MappingTarget Movie movie);
 }

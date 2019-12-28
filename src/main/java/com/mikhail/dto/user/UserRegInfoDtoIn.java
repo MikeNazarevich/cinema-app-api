@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,9 +15,11 @@ import javax.validation.constraints.NotBlank;
 public class UserRegInfoDtoIn {
 
     @NotBlank
+    @Size(max = 30)
     private String name;
 
     @NotBlank
+    @Size(max = 50)
     private String surname;
 
     @NotBlank
@@ -26,5 +29,6 @@ public class UserRegInfoDtoIn {
 
     @Email
     @NotBlank
+    @Size(max = 120)
     private String email;
 }
