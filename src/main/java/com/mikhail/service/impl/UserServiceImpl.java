@@ -8,6 +8,7 @@ import com.mikhail.exceptionHandler.ResourceNotFoundException;
 import com.mikhail.mapper.UserMapper;
 import com.mikhail.model.User;
 import com.mikhail.repository.UserRepository;
+import com.mikhail.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;

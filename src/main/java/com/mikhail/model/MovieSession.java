@@ -27,4 +27,8 @@ public class MovieSession extends UpdatedInformation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
+
+    @OneToMany(mappedBy = "movie_session",
+            fetch = FetchType.LAZY)
+    private List<Ticket> tickets;
 }

@@ -1,10 +1,12 @@
 package com.mikhail.service.impl;
 
 import com.mikhail.dto.movie.MovieDtoIn;
+import com.mikhail.dto.movie.MovieDtoOut;
 import com.mikhail.exceptionHandler.ResourceNotFoundException;
 import com.mikhail.mapper.MovieMapper;
 import com.mikhail.model.Movie;
 import com.mikhail.repository.MovieRepository;
+import com.mikhail.service.api.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +14,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MovieService {
+public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
     private final MovieMapper mapper;
 
-    public List<Movie> findAllMovies() {
-        return movieRepository.findAll();
+    public List<MovieDtoOut> findAllMovies() {
+        return mapper.toOut(movieRepository.findAll());
     }
 
-    public Movie findMovie(Long id) {
-        return movieRepository.getOne(id);
+    public MovieDtoOut findMovie(final Long id) {
+        return mapper.toOut(movieRepository.getOne(id));
     }
 
     public void addMovie(MovieDtoIn dtoIn) {
@@ -33,7 +35,10 @@ public class MovieService {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Not found"));
         mapper.merge(dtoIn, movie);
         movieRepository.save(movie);
+    }
 
+    public void deleteMovie(final Long id) {
+        movieRepository.deleteById(id);
     }
 
 
