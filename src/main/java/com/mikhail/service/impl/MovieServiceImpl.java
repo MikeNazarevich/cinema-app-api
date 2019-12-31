@@ -41,5 +41,9 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.deleteById(id);
     }
 
+//    public Page<MovieDtoOut> findAll(MovieSpecifications spec) {
+//        Specifications specifications
+//        return mapper.toOut(movieRepository.findAll(Specifications.where))
+//    }
 
 }
