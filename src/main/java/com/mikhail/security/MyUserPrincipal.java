@@ -1,6 +1,6 @@
 package com.mikhail.security;
 
-import com.mikhail.model.User;
+import com.mikhail.user.impl.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

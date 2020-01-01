@@ -1,7 +1,7 @@
 package com.mikhail.security;
 
-import com.mikhail.model.User;
-import com.mikhail.repository.UserRepository;
+import com.mikhail.user.impl.User;
+import com.mikhail.user.impl.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
