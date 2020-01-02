@@ -1,22 +1,20 @@
 package com.mikhail.user;
 
-import com.mikhail.web.dto.user.UserFullInfoDtoOut;
-import com.mikhail.web.dto.user.UserLiteDtoOut;
-import com.mikhail.web.dto.user.UserRegInfoDtoIn;
-import com.mikhail.web.dto.user.UserUpdateInfo;
+import com.mikhail.user.impl.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
-    UserFullInfoDtoOut findUserById(final Long id);
+    User findUserById(final Long id);
 
-    List<UserLiteDtoOut> getAll();
+    List<User> findAll();
 
-    void registerUser(final UserRegInfoDtoIn regInfoDtoIn);
+    void registerUser(final User user);
 
     void deleteUserById(final Long id);
 
-    void updateUser(final Long id, final UserUpdateInfo updateInfo);
+    void updateUser(final Long id, final Map<String, String> user);
 
 }

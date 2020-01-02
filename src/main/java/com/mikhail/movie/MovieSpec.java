@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 import java.time.Year;
 
 public class MovieSpec implements Specification<Movie> {
+
     @Override
     public Predicate toPredicate(Root<Movie> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         return null;

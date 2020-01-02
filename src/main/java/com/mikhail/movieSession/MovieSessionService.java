@@ -1,15 +1,15 @@
 package com.mikhail.movieSession;
 
+import com.mikhail.movieSession.impl.MovieSession;
 import com.mikhail.web.dto.movieSession.MovieSessionDtoIn;
-import com.mikhail.web.dto.movieSession.MovieSessionDtoOut;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MovieSessionService {
 
     void addMovieSession(final MovieSessionDtoIn dtoIn);
 
-    MovieSessionDtoOut findById(final Long id);
+    MovieSession findById(final Long id);
 
-    List<MovieSessionDtoOut> findAll();
+    Page<MovieSession> findAll(MovieSessionSpec spec, Pageable pageable);
 }

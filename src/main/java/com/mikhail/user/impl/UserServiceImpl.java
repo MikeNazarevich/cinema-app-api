@@ -2,50 +2,50 @@ package com.mikhail.user.impl;
 
 import com.mikhail.exceptionHandler.ResourceNotFoundException;
 import com.mikhail.user.UserService;
-import com.mikhail.web.dto.user.UserFullInfoDtoOut;
-import com.mikhail.web.dto.user.UserLiteDtoOut;
-import com.mikhail.web.dto.user.UserRegInfoDtoIn;
-import com.mikhail.web.dto.user.UserUpdateInfo;
-import com.mikhail.web.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
     private User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("user not found"));
     }
 
-    public UserFullInfoDtoOut findUserById(final Long id) {
-        return userMapper.toOutFull(findById(id));
+    public User findUserById(final Long id) {
+        return findById(id);
     }
 
-    public List<UserLiteDtoOut> getAll() {
-        return userMapper.toOut(userRepository.findAll());
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
-    public void registerUser(final UserRegInfoDtoIn regInfoDtoIn) {
-        User user = new User();
-        userMapper.merge(regInfoDtoIn, user);
+    public void registerUser(final User user) {
         userRepository.save(user);
     }
 
     public void deleteUserById(Long id) {
-        userRepository.delete(userRepository.getOne(id));
+        userRepository.deleteById(id);
     }
 
-    public void updateUser(Long id, UserUpdateInfo updateInfo) {
+    public void updateUser(Long id, Map<String, String> fields) {
         User user = findById(id);
-        userMapper.merge(updateInfo, user);
-        userRepository.save(user);
 
+        fields.forEach((k, v) -> {
+            Field field = ReflectionUtils.findField(User.class, k);
+
+            if (field != null)
+                ReflectionUtils.setField(field, user, v);
+        });
+        userRepository.save(user);
     }
 }

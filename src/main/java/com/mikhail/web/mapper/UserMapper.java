@@ -14,6 +14,8 @@ public interface UserMapper extends DtoMapper<UserDtoIn, UserLiteDtoOut, User> {
 
     UserFullInfoDtoOut toOutFull(User user);
 
+    User fromIn(UserRegInfoDtoIn regInfoDtoIn);
+
     void merge(UserRegInfoDtoIn regInfoDtoIn, @MappingTarget User user);
     void merge(UserUpdateInfo updateInfo, @MappingTarget User user);
 

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MovieService {
 
@@ -14,7 +15,7 @@ public interface MovieService {
 
     void addMovie(Movie movie);
 
-    void updateMovie(Movie movie);
+    void updateMovie(Long id, Map<String, String> fields);
 
     void deleteMovie(Long id);
 

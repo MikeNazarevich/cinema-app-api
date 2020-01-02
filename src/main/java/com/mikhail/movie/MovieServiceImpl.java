@@ -8,8 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +36,15 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
     }
 
-    public void updateMovie(final Movie movie) {
+    public void updateMovie(final Long id, final Map<String, String> fields) {
+        Movie movie = findById(id);
+
+        fields.forEach((k, v) -> {
+            Field field = ReflectionUtils.findField(Movie.class, k);
+
+            if (field != null)
+                ReflectionUtils.setField(field, movie, v);
+        });
         movieRepository.save(movie);
     }
 
