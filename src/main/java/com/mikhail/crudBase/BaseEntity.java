@@ -6,7 +6,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.Instant;
 
 @MappedSuperclass
 @Getter
@@ -19,7 +19,7 @@ public abstract class BaseEntity {
 
     @LastModifiedDate
     @Column(name = "update_at")
-    private Date updatedAt;
+    private Instant updatedAt;
 
     @LastModifiedBy
     @Column(name = "update_by")
