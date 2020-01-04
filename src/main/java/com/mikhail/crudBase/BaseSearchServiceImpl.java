@@ -1,5 +1,6 @@
 package com.mikhail.crudBase;
 
+import com.mikhail.crudBase.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -57,6 +58,11 @@ public class BaseSearchServiceImpl<
 
     @Override
     public E findOneOrThrow(Long id) {
-        return null;
+        Optional<E> result = findOne(id);
+        if (!result.isPresent()) {
+            throw new ResourceNotFoundException(
+                    String.format("No %s entity with id %s exists!", persistentClass.getSimpleName(), id));
+        }
+        return result.get();
     }
 }

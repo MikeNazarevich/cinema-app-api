@@ -1,6 +1,6 @@
 package com.mikhail.user.impl;
 
-import com.mikhail.exceptionHandler.ResourceNotFoundException;
+import com.mikhail.crudBase.exception.ResourceNotFoundException;
 import com.mikhail.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.mikhail.web;
 
+import com.mikhail.movie.MovieService;
 import com.mikhail.movie.MovieSpec;
-import com.mikhail.movie.impl.MovieService;
 import com.mikhail.web.dto.movie.MovieDtoIn;
 import com.mikhail.web.dto.movie.MovieDtoOut;
 import com.mikhail.web.mapper.MovieMapper;

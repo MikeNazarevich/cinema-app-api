@@ -1,7 +1,9 @@
 package com.mikhail.movie;
 
+import com.mikhail.crudBase.BaseEntitySpec;
 import com.mikhail.movie.impl.Movie;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,9 +11,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.Year;
 
-public class MovieSpec implements Specification<Movie> {
+@Component
+public class MovieSpec extends BaseEntitySpec<Movie, MovieFilter> {
 
-    @Override
     public Predicate toPredicate(Root<Movie> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         return null;
     }

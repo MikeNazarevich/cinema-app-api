@@ -1,4 +1,4 @@
-package com.mikhail.exceptionHandler;
+package com.mikhail.crudBase.exception;
 
 public final class ResourceNotFoundException extends RuntimeException {
 
