@@ -1,7 +1,7 @@
 package com.mikhail.web;
 
+import com.mikhail.movie.MovieFilter;
 import com.mikhail.movie.MovieService;
-import com.mikhail.movie.MovieSpec;
 import com.mikhail.web.dto.movie.MovieDtoIn;
 import com.mikhail.web.dto.movie.MovieDtoOut;
 import com.mikhail.web.mapper.MovieMapper;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -24,18 +23,13 @@ public class MovieController {
     private final MovieMapper mapper;
 
     @GetMapping("/movies")
-    public ResponseEntity<List<MovieDtoOut>> getAllMovies() {
-        return ResponseEntity.ok().body(mapper.toOut(service.findAllMovies()));
-    }
-
-    @GetMapping("/movies")
-    public ResponseEntity<Page<MovieDtoOut>> getMovies(MovieSpec spec, Pageable page) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findAll(spec, page)));
+    public ResponseEntity<Page<MovieDtoOut>> getAllMoviesPage(MovieFilter filter, Pageable page) {
+        return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(filter, page)));
     }
 
     @GetMapping("/movies/{id}")
     public ResponseEntity<MovieDtoOut> getMovie(@PathVariable(name = "id") final Long movieId) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findMovie(movieId)));
+        return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(movieId)));
     }
 
     @PostMapping("/movies")

@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class BaseEntityFilter {
 
     private List<Long> id;
-    private Instant updatedAt;
+    private Instant updatedTo;
+    private Instant updatedFrom;
     private List<Long> updatedBy;
 }

@@ -1,23 +1,21 @@
 package com.mikhail.ticket.impl;
 
+import com.mikhail.crudBase.BaseSearchServiceImpl;
+import com.mikhail.ticket.TicketFilter;
 import com.mikhail.ticket.TicketService;
 import com.mikhail.ticket.TicketSpec;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class TicketServiceImpl implements TicketService {
+public class TicketServiceImpl extends BaseSearchServiceImpl<Ticket, TicketFilter, TicketSpec, TicketRepository>
+        implements TicketService {
 
-    private final TicketRepository repository;
-
-    public TicketServiceImpl(TicketRepository repository) {
-        this.repository = repository;
+    public TicketServiceImpl(TicketRepository repository, TicketSpec spec) {
+        super(repository, spec);
     }
 
-    @Override
-    public List<Ticket> findAll(TicketSpec spec) {
-        return repository.findAll(Specification.where(findB));
-    }
+//    @Override
+//    public List<Ticket> findAll(TicketSpec spec) {
+//        return getRepository().findAll(Specification.where(findB));
+//    }
 }

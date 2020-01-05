@@ -9,10 +9,10 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
 
-public class BaseSearchServiceImpl<
+public abstract class BaseSearchServiceImpl<
         E extends BaseEntity,
         F extends BaseEntityFilter,
-        S extends BaseEntitySpec<E, F>,
+        S extends BaseSpec<E, F>,
         R extends BaseEntityRepository<E>> implements BaseSearchService<E, F> {
 
     private final R repository;
@@ -24,9 +24,16 @@ public class BaseSearchServiceImpl<
         this.repository = repository;
         this.spec = spec;
 
-        //TODO WHAT?
         this.persistentClass = (Class<E>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    public R getRepository() {
+        return repository;
+    }
+
+    public S getSpec() {
+        return spec;
     }
 
     @Override

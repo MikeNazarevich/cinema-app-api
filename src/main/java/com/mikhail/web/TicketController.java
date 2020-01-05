@@ -1,7 +1,7 @@
 package com.mikhail.web;
 
+import com.mikhail.ticket.TicketFilter;
 import com.mikhail.ticket.TicketService;
-import com.mikhail.ticket.TicketSpec;
 import com.mikhail.web.dto.ticket.TicketDtoOut;
 import com.mikhail.web.mapper.TicketMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class TicketController {
     private final TicketMapper mapper;
 
     @GetMapping("/tickets")
-    public ResponseEntity<List<TicketDtoOut>> findAll(TicketSpec spec) {
-        return ResponseEntity.ok().build(service.)
+    public ResponseEntity<List<TicketDtoOut>> findAll(TicketFilter filter) {
+        return ResponseEntity.ok().body(mapper.toOut(service.findAll(filter)));
     }
 }

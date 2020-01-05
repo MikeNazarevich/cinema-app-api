@@ -11,19 +11,15 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 @Service
-//@RequiredArgsConstructor
 public class MovieServiceImpl extends BaseSearchServiceImpl<Movie, MovieFilter, MovieSpec, MovieRepository>
         implements MovieService {
-
-//    private final MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository repository, MovieSpec spec) {
         super(repository, spec);
     }
 
-
     public void addMovie(Movie movie) {
-        repository.save(movie);
+        getRepository().save(movie);
     }
 
     public void updateMovie(final Long id, final Map<String, String> fields) {
@@ -35,12 +31,11 @@ public class MovieServiceImpl extends BaseSearchServiceImpl<Movie, MovieFilter, 
             if (field != null)
                 ReflectionUtils.setField(field, movie, v);
         });
-        movieRepository.save(movie);
+        getRepository().save(movie);
     }
 
     public void deleteMovie(final Long id) {
-        movieRepository.deleteById(id);
+        getRepository().deleteById(id);
     }
-
 
 }

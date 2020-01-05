@@ -1,15 +1,11 @@
 package com.mikhail.user;
 
+import com.mikhail.crudBase.BaseSearchService;
 import com.mikhail.user.impl.User;
 
-import java.util.List;
 import java.util.Map;
 
-public interface UserService {
-
-    User findUserById(final Long id);
-
-    List<User> findAll();
+public interface UserService extends BaseSearchService<User, UserFilter> {
 
     void registerUser(final User user);
 

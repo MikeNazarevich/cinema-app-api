@@ -1,10 +1,7 @@
 package com.mikhail.ticket;
 
+import com.mikhail.crudBase.BaseSearchService;
 import com.mikhail.ticket.impl.Ticket;
 
-import java.util.List;
-
-public interface TicketService {
-
-    List<Ticket> findAll(TicketSpec spec);
+public interface TicketService extends BaseSearchService<Ticket, TicketFilter> {
 }

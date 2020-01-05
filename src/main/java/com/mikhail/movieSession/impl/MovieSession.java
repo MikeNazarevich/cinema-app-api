@@ -27,7 +27,8 @@ public class MovieSession extends BaseEntity {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    @OneToMany(mappedBy = "movie_session",
+    @OneToMany(
+            mappedBy = "movieSession",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Ticket> tickets;

@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public UserFullInfoDtoOut findById(@PathVariable final Long id) {
-        return mapper.toOutFull(userService.findUserById(id));
+        return mapper.toOutFull(userService.findOneOrThrow(id));
     }
 
     @GetMapping("/users")

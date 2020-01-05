@@ -1,7 +1,7 @@
-package com.mikhail.movie;
+package com.mikhail.user;
 
 import com.mikhail.crudBase.BaseSpec;
-import com.mikhail.movie.impl.Movie;
+import com.mikhail.user.impl.User;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,10 +11,10 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Component
-public class MovieSpec extends BaseSpec<Movie, MovieFilter> {
+public class UserSpec extends BaseSpec<User, UserFilter> {
 
     @Override
-    protected void addSelfPredicatesToList(MovieFilter filter, Root<Movie> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates) {
+    protected void addSelfPredicatesToList(UserFilter filter, Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates) {
 
     }
 }
