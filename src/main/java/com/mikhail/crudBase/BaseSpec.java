@@ -42,8 +42,6 @@ public abstract class BaseSpec<T extends BaseEntity, F extends BaseEntityFilter>
     protected abstract void addSelfPredicatesToList(F filter, Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates);
 
 
-//    protected abstract void addPredicatesToList(F filter, Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates);
-
     private void addIdsPredicate(F filter, Root<T> root, List<Predicate> predicates) {
         addIfNotNull(predicates, filter.getId(),
                 () -> root.get(BaseEntity_.id).in(filter.getId()));
