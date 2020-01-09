@@ -32,6 +32,7 @@ ext {
 	keycloakVersion = '8.0.1'
 	liquibaseHibernate5Version = '3.6'
 	archunit_junit5_version = '0.12.0'
+	jhipster_dependencies_version = '3.1.0'
 
 	generatedMainJava = "${buildDir}/generated/main/java"
 }
@@ -94,6 +95,8 @@ repositories {
 }
 
 dependencies {
+	implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}")
+
 	//MapStruct
 	compileOnly "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
 	testCompileOnly "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
@@ -107,9 +110,8 @@ dependencies {
 	compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
 
 	//Spring
-	implementation "org.springframework.boot:spring-boot-loader-tools"
-	implementation "org.springframework.boot:spring-boot-starter-logging"
-	implementation "org.springframework.boot:spring-boot-starter-actuator"
+//	implementation "org.springframework.boot:spring-boot-loader-tools"
+//	implementation "org.springframework.boot:spring-boot-starter-logging"
 	implementation "org.springframework.boot:spring-boot-starter-aop"
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
 	implementation "org.springframework.boot:spring-boot-starter-security"
@@ -124,7 +126,7 @@ dependencies {
 	implementation "org.springframework.security.oauth:spring-security-oauth2"
 
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation "org.postgresql:postgresql"
