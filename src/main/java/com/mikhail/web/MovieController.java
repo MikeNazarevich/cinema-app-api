@@ -28,7 +28,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
-    public ResponseEntity<MovieDtoOut> getMovie(@PathVariable(name = "id") final Long movieId) {
+    public ResponseEntity<MovieDtoOut> getMovie(@PathVariable final Long movieId) {
         return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(movieId)));
     }
 

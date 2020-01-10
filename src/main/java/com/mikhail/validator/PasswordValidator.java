@@ -5,6 +5,11 @@ import javax.validation.ConstraintValidatorContext;
 
 public class PasswordValidator implements ConstraintValidator<ValidPassword, Object> {
     @Override
+    public void initialize(ValidPassword constraintAnnotation) {
+
+    }
+
+    @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         return false;
     }

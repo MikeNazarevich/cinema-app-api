@@ -1,18 +1,3 @@
-buildscript {
-	ext {
-		springBootVersion = '2.2.1.RELEASE'
-	}
-	repositories {
-		mavenLocal()
-		mavenCentral()
-		gradlePluginPortal()
-		maven { url "https://repo.spring.io/plugins-release" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
-}
-
 plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -28,11 +13,8 @@ ext {
 	mapstructVersion = '1.3.0.Final'
 	swaggerVersion = '2.9.2'
 	junitVersion = '5.5.1'
-	hibernetVersion = '5.4.10.Final'
+	hibernetVersion = '5.2.17.Final'
 	keycloakVersion = '8.0.1'
-	liquibaseHibernate5Version = '3.6'
-	archunit_junit5_version = '0.12.0'
-	jhipster_dependencies_version = '3.1.0'
 
 	generatedMainJava = "${buildDir}/generated/main/java"
 }
@@ -40,37 +22,6 @@ ext {
 test {
 	useJUnitPlatform()
 }
-
-liquibase {
-	activities {
-		main {
-			driver "org.h2.Driver"
-			url "jdbc:h2:file:./build/h2db/db/cinema"
-			username "cinema"
-			password ""
-			changeLogFile "src/main/resources/config/liquibase/master.yml"
-			defaultSchemaName ""
-			logLevel "debug"
-			classpath "src/main/resources/"
-		}
-	}
-}
-//		diffLog {
-//			driver ""
-//			url ""
-//			username "cinema"
-//			password ""
-//			changeLogFile project.ext.diffChangelogFile
-//			referenceUrl "hibernate:spring:org.jhipster.keycloak.domain?dialect=&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-//			defaultSchemaName ""
-//			logLevel "debug"
-//			classpath "$buildDir/classes/java/main"
-//			excludeObjects "oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token"
-//		}
-//	}
-//
-//	runList = project.ext.runList
-//}
 
 configurations {
 	developmentOnly
@@ -80,8 +31,6 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
-	providedRuntime
-	implementation.exclude module: "spring-boot-starter-tomcat"
 }
 
 compileJava {
@@ -91,12 +40,41 @@ compileJava {
 
 repositories {
 	mavenCentral()
-	jcenter()
+}
+
+project.ext.diffChangelogFile = "src/main/resources/config/liquibase/changelog/" + new Date().format("yyyyMMddHHmmss") + "_changelog.xml"
+
+
+liquibase {
+	activities {
+		main {
+			driver "org.h2.Driver"
+			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
+			username "keycloakApp"
+			password ""
+			changeLogFile "src/main/resources/config/liquibase/master.xml"
+			defaultSchemaName ""
+			logLevel "debug"
+			classpath "src/main/resources/"
+		}
+		diffLog {
+			driver "org.h2.Driver"
+			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
+			username "keycloakApp"
+			password ""
+			changeLogFile project.ext.diffChangelogFile
+			referenceUrl "hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.H2Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+			defaultSchemaName ""
+			logLevel "debug"
+			classpath "$buildDir/classes/java/main"
+			excludeObjects "oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token"
+		}
+	}
+
+//	runList = project.ext.runList
 }
 
 dependencies {
-	implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}")
-
 	//MapStruct
 	compileOnly "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
 	testCompileOnly "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
@@ -110,50 +88,40 @@ dependencies {
 	compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
 
 	//Spring
-//	implementation "org.springframework.boot:spring-boot-loader-tools"
-//	implementation "org.springframework.boot:spring-boot-starter-logging"
-	implementation "org.springframework.boot:spring-boot-starter-aop"
-	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-	implementation "org.springframework.boot:spring-boot-starter-security"
-	implementation ("org.springframework.boot:spring-boot-starter-web") {
-		exclude module: "spring-boot-starter-tomcat"
-	}
-	implementation "org.springframework.security:spring-security-config"
-	implementation "org.springframework.security:spring-security-data"
-	implementation "org.springframework.security:spring-security-web"
-	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
-	implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
-	implementation "org.springframework.security.oauth:spring-security-oauth2"
+	compile group: 'com.cosium.spring.data', name: 'spring-data-jpa-entity-graph', version: '2.2.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.liquibase:liquibase-core:3.8.4'
 
 	compileOnly 'org.projectlombok:lombok'
-//	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	implementation "org.postgresql:postgresql"
-	liquibaseRuntime "org.postgresql:postgresql"
-
-	annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernetVersion}"
-	implementation "org.hibernate:hibernate-entitymanager"
-	implementation "org.hibernate.validator:hibernate-validator"
-	implementation "org.liquibase:liquibase-core"
-	liquibaseRuntime "org.liquibase:liquibase-core"
-	liquibaseRuntime "org.liquibase.ext:liquibase-hibernate5:${liquibaseHibernate5Version}"
-	liquibaseRuntime sourceSets.main.compileClasspath
-
+	// Keycloak
+	implementation 'org.keycloak:keycloak-spring-boot-starter'
 
 	//Test
-	testImplementation "org.springframework.security:spring-security-test"
-	testImplementation "org.springframework.boot:spring-boot-test"
-	testImplementation "org.junit.jupiter:junit-jupiter-engine"
-//	testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunit_junit5_version}"
-//	testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
-	testImplementation "org.assertj:assertj-core"
-	testImplementation "junit:junit"
-	testImplementation "org.mockito:mockito-core"
-	testImplementation "org.hamcrest:hamcrest-library"
-
-	testImplementation "com.h2database:h2"
-	liquibaseRuntime "com.h2database:h2"
-
+//	compile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+//	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+//	compile 'org.mockito:mockito-junit-jupiter:3.0.0'
+//	compile("org.springframework.boot:spring-boot-starter-test") {
+//		exclude group: 'junit', module: 'junit'
+//	}
+	annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
+	compile "org.hibernate:hibernate-entitymanager:${hibernetVersion}"
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.keycloak.bom:keycloak-adapter-bom:${keycloakVersion}"
+	}
+}
+
+//test {
+//	useJUnitPlatform()
+//}
