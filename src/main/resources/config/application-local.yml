@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cinema_db
+    username: cinema_user
+    password: cinema_pass
+
+jpa:
+  show-sql: true
+  properties:
+    #      hibernate.generate_statistics: true
+    #      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: none
+      connection.provider_disables_autocommit: true
+      temp.use_jdbc_metadata_defaults: false # to avoid `Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.`
+      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+      jdbc.time_zone: UTC
+      cache.use_second_level_cache: false
+      cache.use_query_cache: false
+
+
+keycloak:
+  auth-server-url: http://localhost:8180/auth
+  realm: SpringBootKeycloak
+  resource: login-app
+  public-client: true

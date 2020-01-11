@@ -1,11 +1,11 @@
-version: '2'
+version: "3.7"
 services:
   cinema-postgresql:
     image: postgres:11.6
+    volumes:
+      - ${POSTGRES_DATA_DIR}:/var/lib/postgresql/data
+      - ${POSTGRES_SCRIPTS_DIR}:/docker-entrypoint-initdb.d/
     # volumes:
     #     - ~/volumes/jhipster/keycloakJhipster/postgresql/:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=
     ports:
       - 5432:5432
