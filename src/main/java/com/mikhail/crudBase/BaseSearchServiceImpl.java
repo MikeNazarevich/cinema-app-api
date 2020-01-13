@@ -1,5 +1,6 @@
 package com.mikhail.crudBase;
 
+import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraph;
 import com.mikhail.crudBase.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +49,11 @@ public abstract class BaseSearchServiceImpl<
     }
 
     @Override
+    public Page<E> findAllPage(Pageable pageable, EntityGraph entityGraph) {
+        return repository.findAll(pageable, entityGraph);
+    }
+
+    @Override
     public List<E> findAll() {
         return repository.findAll();
     }
@@ -59,8 +65,36 @@ public abstract class BaseSearchServiceImpl<
     }
 
     @Override
+    public Iterable<E> findAll(F filter, EntityGraph entityGraph) {
+        Specification<E> specification = spec.build(filter);
+        return repository.findAll(specification, entityGraph);
+    }
+
+    @Override
+    public Iterable<E> findAll(EntityGraph entityGraph) {
+        return repository.findAll(entityGraph);
+    }
+
+    @Override
     public Optional<E> findOne(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Optional<E> findOne(F filter) {
+        Specification<E> specification = spec.build(filter);
+        return repository.findOne(specification);
+    }
+
+    @Override
+    public Optional<E> findOne(Long id, EntityGraph entityGraph) {
+        return repository.findById(id, entityGraph);
+    }
+
+    @Override
+    public Optional<E> findOne(F filter, EntityGraph entityGraph) {
+        Specification<E> specification = spec.build(filter);
+        return repository.findOne(specification, entityGraph);
     }
 
     @Override
@@ -69,6 +103,36 @@ public abstract class BaseSearchServiceImpl<
         if (!result.isPresent()) {
             throw new ResourceNotFoundException(
                     String.format("No %s entity with id %s exists!", persistentClass.getSimpleName(), id));
+        }
+        return result.get();
+    }
+
+    @Override
+    public E findOneOrThrow(Long id, EntityGraph entityGraph) {
+        Optional<E> result = findOne(id, entityGraph);
+        if (!result.isPresent()) {
+            throw new ResourceNotFoundException(
+                    String.format("No %s entity with id %s exists!", persistentClass.getSimpleName(), id));
+        }
+        return result.get();
+    }
+
+    @Override
+    public E findOneOrThrow(F filter) {
+        Optional<E> result = findOne(filter);
+        if (!result.isPresent()) {
+            throw new ResourceNotFoundException(
+                    String.format("Resource %s not found by filter %s", persistentClass.getSimpleName(), filter));
+        }
+        return result.get();
+    }
+
+    @Override
+    public E findOneOrThrow(F filter, EntityGraph entityGraph) {
+        Optional<E> result = findOne(filter, entityGraph);
+        if (!result.isPresent()) {
+            throw new ResourceNotFoundException(
+                    String.format("Resource %s not found by filter %s", persistentClass.getSimpleName(), filter));
         }
         return result.get();
     }

@@ -3,6 +3,7 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: mikhail
+      comment: "Create table users"
       changes:
         - createTable:
             tableName: users
@@ -15,8 +16,24 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
                   name: username
                   type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(254)
                   constraints:
                     unique: true
                     nullable: false
@@ -25,46 +42,112 @@ databaseChangeLog:
                   type: varchar(512)
                   constraints:
                     nullable: false
-              - column:
-                  name: first_name
-                  type: varchar(50)
-              - column:
-                  name: last_name
-                  type: varchar(50)
-              - column:
-                  name: email
-                  type: varchar(50)
 
   - changeSet:
       id: 2
       author: mikhail
-      comment: "Create admin user"
+      comment: "Create movie table"
       changes:
-        - insert:
-            tableName: users
+        - createTable:
+            tableName: movie
             columns:
               - column:
-                  name: username
-                  value: "admin"
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: password
-                  value: "admin"
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
               - column:
-                  name: email
-                  value: "admin@server.com"
-        - insert:
-            tableName: users
+                  name: release_year
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: producer
+                  type: varchar(100)
+              - column:
+                  name: description
+                  type: varchar(8192)
+
+  - changeSet:
+      id: 3
+      author: mikhail
+      comment: "Create MovieSession table"
+      changes:
+        - createTable:
+            tableName: movie_session
             columns:
               - column:
-                  name: username
-                  value: "guest"
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: password
-                  value: "guest"
+                  name: movie_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: mikhail
+      comment: "Create Ticket table"
+      changes:
+        - createTable:
+            tableName: ticket
+            columns:
               - column:
-                  name: email
-                  value: "guest@server.com"
-      rollback:
-        - delete:
-            tableName: users
-            where: username in ('admin', 'guest')
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: row
+                  type: BIGINT
+              - column:
+                  name: place
+                  type: BIGINT
+
+#  - changeSet:
+#      id: 5
+#      author: mikhail
+#      comment: "Create admin user"
+#      changes:
+#        - insert:
+#            tableName: users
+#            columns:
+#              - column:
+#                  name: username
+#                  value: "admin"
+#              - column:
+#                  name: password
+#                  value: "admin"
+#              - column:
+#                  name: email
+#                  value: "admin@server.com"
+#        - insert:
+#            tableName: users
+#            columns:
+#              - column:
+#                  name: username
+#                  value: "guest"
+#              - column:
+#                  name: password
+#                  value: "guest"
+#              - column:
+#                  name: email
+#                  value: "guest@server.com"
+#      rollback:
+#        - delete:
+#            tableName: users
+#            where: username in ('admin', 'guest')

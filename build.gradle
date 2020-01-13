@@ -88,7 +88,7 @@ dependencies {
 	compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
 
 	//Spring
-	compile group: 'com.cosium.spring.data', name: 'spring-data-jpa-entity-graph', version: '2.2.3'
+	implementation 'com.cosium.spring.data:spring-data-jpa-entity-graph:2.2.3'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'

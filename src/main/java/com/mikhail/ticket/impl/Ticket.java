@@ -2,6 +2,7 @@ package com.mikhail.ticket.impl;
 
 import com.mikhail.crudBase.BaseEntity;
 import com.mikhail.movieSession.impl.MovieSession;
+import com.mikhail.user.impl.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,10 @@ import javax.persistence.*;
 @Setter
 @Table(name = "ticket")
 @Entity
+@NamedEntityGraph(
+        name = "Ticket.all",
+        attributeNodes = {}
+)
 public class Ticket extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,4 +29,8 @@ public class Ticket extends BaseEntity {
     private Long row;
 
     private Long place;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

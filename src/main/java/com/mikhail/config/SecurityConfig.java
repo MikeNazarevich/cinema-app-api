@@ -20,7 +20,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
         SimpleAuthorityMapper grantedAuthorityMapper = new SimpleAuthorityMapper();
-        grantedAuthorityMapper.setPrefix("ROLE");
 
         KeycloakAuthenticationProvider keycloakAuthenticationProvider = keycloakAuthenticationProvider();
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(grantedAuthorityMapper);
