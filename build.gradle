@@ -113,7 +113,6 @@ dependencies {
 //		exclude group: 'junit', module: 'junit'
 //	}
 	annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
-	compile "org.hibernate:hibernate-entitymanager:${hibernetVersion}"
 }
 
 dependencyManagement {

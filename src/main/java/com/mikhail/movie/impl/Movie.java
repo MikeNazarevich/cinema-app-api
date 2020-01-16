@@ -10,7 +10,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.Year;
 import java.util.List;
 
 @NoArgsConstructor
@@ -19,7 +18,6 @@ import java.util.List;
 @Setter
 @Table(name = "movie")
 @Entity
-
 @NamedEntityGraph(
         name = "Movie.movieSession",
         attributeNodes = @NamedAttributeNode("movieSession")
@@ -38,9 +36,8 @@ public class Movie extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @NotBlank
-    @Column(name = "release_year", nullable = false)
-    private Year releaseYear;
+    @Column(name = "release_year")
+    private Integer releaseYear;
 
     @Size(max = 100)
     @Column(length = 100)

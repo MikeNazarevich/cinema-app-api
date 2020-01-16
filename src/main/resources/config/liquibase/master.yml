@@ -75,6 +75,7 @@ databaseChangeLog:
                   name: description
                   type: varchar(8192)
 
+
   - changeSet:
       id: 3
       author: mikhail
@@ -95,6 +96,14 @@ databaseChangeLog:
                   type: TIMESTAMP
                   constraints:
                     nullable: false
+#              - column:
+#                  name: move_id
+#                  type: uuid
+#                  constraints:
+#                    foreignKeyName:
+#                  baseColumnNames: movie_id
+
+
 
   - changeSet:
       id: 4
@@ -118,36 +127,24 @@ databaseChangeLog:
                   name: place
                   type: BIGINT
 
-#  - changeSet:
-#      id: 5
-#      author: mikhail
-#      comment: "Create admin user"
-#      changes:
-#        - insert:
-#            tableName: users
-#            columns:
-#              - column:
-#                  name: username
-#                  value: "admin"
-#              - column:
-#                  name: password
-#                  value: "admin"
-#              - column:
-#                  name: email
-#                  value: "admin@server.com"
-#        - insert:
-#            tableName: users
-#            columns:
-#              - column:
-#                  name: username
-#                  value: "guest"
-#              - column:
-#                  name: password
-#                  value: "guest"
-#              - column:
-#                  name: email
-#                  value: "guest@server.com"
-#      rollback:
-#        - delete:
-#            tableName: users
-#            where: username in ('admin', 'guest')
+
+  - changeSet:
+      id: 5
+      author: mikhail
+      comment: "Add movies"
+      changes:
+        -insert:
+          tableName: movie
+          columns:
+            - column:
+                name: name
+                value: "Star Wars: The Rise Of Skywalker"
+            - column:
+                name: release_year
+                value: 2019
+            - column:
+                name: producer
+                value: "J.J. Abrams"
+            - column:
+                name: decription
+                value: "The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end."

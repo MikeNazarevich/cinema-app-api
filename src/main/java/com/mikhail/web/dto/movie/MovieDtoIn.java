@@ -23,4 +23,6 @@ public class MovieDtoIn {
 
     @Size(max = 100)
     private String producer;
+
+    private Integer releaseYear;
 }

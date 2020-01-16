@@ -32,7 +32,7 @@ services:
       DB_PASSWORD: 'password'
 
     volumes:
-      - ./realm-config/realm.json:/tmp/realm.json
+      - ${KEYCLOAK_REALM_JSON}:/tmp/realm.json
     ports:
       - 9080:9080
       - 9443:9443
