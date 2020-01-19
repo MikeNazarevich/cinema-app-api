@@ -3,37 +3,26 @@ services:
   cinema-postgresql:
     image: postgres:11.6
     volumes:
-      - ${POSTGRES_DATA_DIR}:/var/lib/postgresql/data
-      - ${POSTGRES_SCRIPTS_DIR}:/docker-entrypoint-initdb.d/
+      - ./postgres/datadir:/var/lib/postgresql/data
+      - ./postgres/init/:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
 
   keycloak:
     image: jboss/keycloak:8.0.1
-      #    command:
-      #      [
-      #        '-b',
-      #        '0.0.0.0',
-      #        '-Dkeycloak.migration.action=import',
-      #        '-Dkeycloak.migration.provider=dir',
-      #        '-Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config',
-      #        '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
-      #        '-Djboss.socket.binding.port-offset=1000',
-      #        '-Dkeycloak.profile.feature.upload_scripts=enabled',
-      #      ]
     environment:
       KEYCLOAK_USER: 'admin'
       KEYCLOAK_PASSWORD: "admin"
-      KEYCLOAL_IMPORT: '/tmp/realm.json'
+#      KEYCLOAL_IMPORT: '/tmp/realm.json'
       DB_VENDOR: 'POSTGRES'
       DB_ADDR: 'postgres'
-      DB_DATABASE: 'keycloak'
-      DB_USER: 'keycloak'
-      DB_PASSWORD: 'password'
+      DB_DATABASE: 'cinema_db'
+      DB_USER: 'cinema_user'
+      DB_PASSWORD: 'cinema_pass'
 
-    volumes:
-      - ${KEYCLOAK_REALM_JSON}:/tmp/realm.json
+#    volumes:
+#      - ${KEYCLOAK_REALM_JSON}:/tmp/realm.json
     ports:
-      - 9080:9080
-      - 9443:9443
-      - 10990:10990
+      - 8080:8080
+    depends_on:
+      - cinema-postgresql

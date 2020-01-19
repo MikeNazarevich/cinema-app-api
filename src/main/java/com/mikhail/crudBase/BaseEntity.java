@@ -18,10 +18,10 @@ public abstract class BaseEntity {
     private Long id;
 
     @LastModifiedDate
-    @Column(name = "update_at")
+    @Column(name = "updated_at")
     private Instant updatedAt;
 
     @LastModifiedBy
-    @Column(name = "update_by")
+    @Column(name = "updated_by")
     private String updatedBy;
 }

@@ -22,14 +22,10 @@ import java.util.List;
         name = "Movie.movieSession",
         attributeNodes = @NamedAttributeNode("movieSession")
 )
-@NamedEntityGraph(name = "Movie.description",
-        attributeNodes =  @NamedAttributeNode("description")
-)
+//@NamedEntityGraph(name = "Movie.description",
+//        attributeNodes = @NamedAttributeNode("description")
+//)
 public class Movie extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Size(max = 100)
     @NotBlank
