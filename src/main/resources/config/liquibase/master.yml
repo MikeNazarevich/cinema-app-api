@@ -150,6 +150,20 @@ databaseChangeLog:
               - column:
                   name: updated_by
                   type: varchar(100)
+              - column:
+                  name: ticket_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ticket_movie_session
+                    references: movie_session(id)
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ticket_user
+                    references: users(id)
 
 
   - changeSet:
@@ -157,18 +171,24 @@ databaseChangeLog:
       author: mikhail
       comment: "Add movies"
       changes:
-        -insert:
-          tableName: movie
-          columns:
-            - column:
-                name: name
-                value: "Star Wars: The Rise Of Skywalker"
-            - column:
-                name: release_year
-                value: 2019
-            - column:
-                name: producer
-                value: "J.J. Abrams"
-            - column:
-                name: decription
-                value: "The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end."
+        - insert:
+            tableName: movie
+            columns:
+              - column:
+                  name: name
+                  value: "Star Wars: The Rise Of Skywalker"
+              - column:
+                  name: release_year
+                  value: 2019
+              - column:
+                  name: producer
+                  value: "J.J. Abrams"
+              - column:
+                  name: description
+                  value: "The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end."
+              - column:
+                  name: updated_at
+                  value: "2020-01-01 10:10:10"
+              - column:
+                  name: updated_by
+                  value: mikhail

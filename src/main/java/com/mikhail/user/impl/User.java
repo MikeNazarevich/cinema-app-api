@@ -1,7 +1,6 @@
 package com.mikhail.user.impl;
 
 import com.mikhail.crudBase.BaseEntity;
-import com.mikhail.model.Role;
 import com.mikhail.ticket.impl.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,9 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -48,12 +45,6 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     private String password;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,
