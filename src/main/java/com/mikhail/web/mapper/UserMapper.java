@@ -1,7 +1,7 @@
 package com.mikhail.web.mapper;
 
 import com.mikhail.crudBase.DtoMapper;
-import com.mikhail.user.impl.User;
+import com.mikhail.user.User;
 import com.mikhail.web.dto.user.*;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;

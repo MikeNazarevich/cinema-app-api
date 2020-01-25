@@ -1,7 +1,7 @@
-package com.mikhail.user.impl;
+package com.mikhail.user;
 
 import com.mikhail.crudBase.BaseEntity;
-import com.mikhail.ticket.impl.Ticket;
+import com.mikhail.ticket.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +21,9 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
+
+    @NaturalId
+    private String iamId;
 
     @Size(max = 50)
     @NotBlank
@@ -43,8 +46,7 @@ public class User extends BaseEntity {
     @Column(length = 254, nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
+
 
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,

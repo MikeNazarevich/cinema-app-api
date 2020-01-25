@@ -1,6 +1,5 @@
 package com.mikhail.web.dto.user;
 
-import com.mikhail.validator.ValidPassword;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -21,11 +20,6 @@ public class UserRegInfoDtoIn {
     @NotBlank
     @Size(max = 50)
     private String surname;
-
-    @NotBlank
-    @ValidPassword
-    private String password;
-    private String matchingPassword;
 
     @Email
     @NotBlank

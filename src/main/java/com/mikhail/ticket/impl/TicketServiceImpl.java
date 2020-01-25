@@ -1,9 +1,9 @@
 package com.mikhail.ticket.impl;
 
 import com.mikhail.crudBase.BaseSearchServiceImpl;
+import com.mikhail.ticket.Ticket;
 import com.mikhail.ticket.TicketFilter;
 import com.mikhail.ticket.TicketService;
-import com.mikhail.ticket.TicketSpec;
 import org.springframework.stereotype.Service;
 
 @Service

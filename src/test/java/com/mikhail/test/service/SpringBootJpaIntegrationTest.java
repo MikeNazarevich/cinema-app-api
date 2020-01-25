@@ -3,7 +3,7 @@
 //import com.mikhail.Application;
 //import com.mikhail.web.dto.user.UserRegInfoDtoIn;
 //import com.mikhail.web.mapper.UserMapper;
-//import com.mikhail.user.impl.User;
+//import com.mikhail.user.User;
 //import com.mikhail.user.impl.UserRepository;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;

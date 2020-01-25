@@ -1,9 +1,9 @@
 package com.mikhail.movie.impl;
 
 import com.mikhail.crudBase.BaseSearchServiceImpl;
+import com.mikhail.movie.Movie;
 import com.mikhail.movie.MovieFilter;
 import com.mikhail.movie.MovieService;
-import com.mikhail.movie.MovieSpec;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 

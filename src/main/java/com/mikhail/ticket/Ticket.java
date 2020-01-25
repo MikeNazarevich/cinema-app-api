@@ -1,8 +1,8 @@
-package com.mikhail.ticket.impl;
+package com.mikhail.ticket;
 
 import com.mikhail.crudBase.BaseEntity;
-import com.mikhail.movieSession.impl.MovieSession;
-import com.mikhail.user.impl.User;
+import com.mikhail.movieSession.MovieSession;
+import com.mikhail.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

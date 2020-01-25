@@ -1,7 +1,8 @@
-package com.mikhail.movie;
+package com.mikhail.movie.impl;
 
 import com.mikhail.crudBase.BaseSpec;
-import com.mikhail.movie.impl.Movie;
+import com.mikhail.movie.Movie;
+import com.mikhail.movie.MovieFilter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;

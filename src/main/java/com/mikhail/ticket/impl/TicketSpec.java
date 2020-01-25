@@ -1,7 +1,8 @@
-package com.mikhail.ticket;
+package com.mikhail.ticket.impl;
 
 import com.mikhail.crudBase.BaseSpec;
-import com.mikhail.ticket.impl.Ticket;
+import com.mikhail.ticket.Ticket;
+import com.mikhail.ticket.TicketFilter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;

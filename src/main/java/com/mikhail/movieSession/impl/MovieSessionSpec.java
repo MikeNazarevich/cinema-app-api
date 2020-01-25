@@ -1,7 +1,8 @@
-package com.mikhail.movieSession;
+package com.mikhail.movieSession.impl;
 
 import com.mikhail.crudBase.BaseSpec;
-import com.mikhail.movieSession.impl.MovieSession;
+import com.mikhail.movieSession.MovieSession;
+import com.mikhail.movieSession.MovieSessionFilter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;

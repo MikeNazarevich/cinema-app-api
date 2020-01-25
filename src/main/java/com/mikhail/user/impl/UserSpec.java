@@ -1,7 +1,8 @@
-package com.mikhail.user;
+package com.mikhail.user.impl;
 
 import com.mikhail.crudBase.BaseSpec;
-import com.mikhail.user.impl.User;
+import com.mikhail.user.User;
+import com.mikhail.user.UserFilter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.CriteriaBuilder;

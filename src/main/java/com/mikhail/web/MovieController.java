@@ -28,8 +28,8 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
-    public ResponseEntity<MovieDtoOut> getMovie(@PathVariable final Long movieId) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(movieId)));
+    public ResponseEntity<MovieDtoOut> getMovie(@PathVariable Long id) {
+        return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(id)));
     }
 
     @PostMapping("/movies")

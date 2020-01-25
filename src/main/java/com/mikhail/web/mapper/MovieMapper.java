@@ -1,7 +1,7 @@
 package com.mikhail.web.mapper;
 
 import com.mikhail.crudBase.DtoMapper;
-import com.mikhail.movie.impl.Movie;
+import com.mikhail.movie.Movie;
 import com.mikhail.web.dto.movie.MovieDtoIn;
 import com.mikhail.web.dto.movie.MovieDtoOut;
 import org.mapstruct.InjectionStrategy;

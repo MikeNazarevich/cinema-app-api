@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - logicalFilePath: config/liquibase/master.yaml
+  - changeSet:
+      id: 1
+      author: mikhail
+      comment: "Create table users"
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(254)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: updated_by
+                  type: varchar(100)
+
+  - changeSet:
+      id: 2
+      author: mikhail
+      comment: "Add user"
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: name
+                  value: "Mike"
+              - column:
+                  name: surname
+                  value: "Ivanov"
+              - column:
+                  name: username
+                  value: "mishka"
+              - column:
+                  name: email
+                  value: "mishka@mail.ru"
+              - column:
+                  name: updated_at
+                  value: "2020-01-01 10:10:10"
+              - column:
+                  name: updated_by
+                  value: mikhail

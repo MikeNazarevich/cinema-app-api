@@ -1,7 +1,7 @@
 package com.mikhail.web.mapper;
 
 import com.mikhail.crudBase.DtoMapper;
-import com.mikhail.ticket.impl.Ticket;
+import com.mikhail.ticket.Ticket;
 import com.mikhail.web.dto.ticket.TicketDtoOut;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;

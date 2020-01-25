@@ -1,7 +1,6 @@
 package com.mikhail.movie;
 
 import com.mikhail.crudBase.BaseSearchService;
-import com.mikhail.movie.impl.Movie;
 
 import java.util.Map;
 

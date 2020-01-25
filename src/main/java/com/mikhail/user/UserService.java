@@ -1,7 +1,6 @@
 package com.mikhail.user;
 
 import com.mikhail.crudBase.BaseSearchService;
-import com.mikhail.user.impl.User;
 
 import java.util.Map;
 
