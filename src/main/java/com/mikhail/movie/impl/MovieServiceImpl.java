@@ -4,33 +4,29 @@ import com.mikhail.crudBase.BaseSearchServiceImpl;
 import com.mikhail.movie.Movie;
 import com.mikhail.movie.MovieFilter;
 import com.mikhail.movie.MovieService;
+import com.mikhail.web.dto.movie.MovieDtoIn;
+import com.mikhail.web.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
-
-import java.lang.reflect.Field;
-import java.util.Map;
 
 @Service
 public class MovieServiceImpl extends BaseSearchServiceImpl<Movie, MovieFilter, MovieSpec, MovieRepository>
         implements MovieService {
 
-    public MovieServiceImpl(MovieRepository repository, MovieSpec spec) {
+    private final MovieMapper mapper;
+
+    public MovieServiceImpl(MovieRepository repository, MovieSpec spec, MovieMapper mapper) {
         super(repository, spec);
+        this.mapper = mapper;
     }
 
     public void addMovie(Movie movie) {
         getRepository().save(movie);
     }
 
-    public void updateMovie(final Long id, final Map<String, String> fields) {
+    public void updateMovie(final Long id, final MovieDtoIn dtoIn) {
         Movie movie = findOneOrThrow(id);
 
-        fields.forEach((k, v) -> {
-            Field field = ReflectionUtils.findField(Movie.class, k);
-
-            if (field != null)
-                ReflectionUtils.setField(field, movie, v);
-        });
+        mapper.merge(dtoIn, movie);
         getRepository().save(movie);
     }
 

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -40,8 +41,8 @@ public class Movie extends BaseEntity {
     private String producer;
 
     @Lob
-    @Basic(fetch = FetchType.LAZY)
     @Size(max = 8192)
+    @Type(type = "org.hibernate.type.TextType")
     @Column(length = 8192)
     private String description;
 

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.time.Instant;
 
+//TODO add createdAt and createdBy
 @MappedSuperclass
 @Getter
 @Setter

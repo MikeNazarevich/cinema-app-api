@@ -23,6 +23,6 @@ services:
 #    volumes:
 #      - ${KEYCLOAK_REALM_JSON}:/tmp/realm.json
     ports:
-      - 8080:8080
+      - 8081:8081
     depends_on:
       - cinema-postgresql

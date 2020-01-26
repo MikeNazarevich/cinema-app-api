@@ -14,8 +14,9 @@ public class TicketServiceImpl extends BaseSearchServiceImpl<Ticket, TicketFilte
         super(repository, spec);
     }
 
-//    @Override
-//    public List<Ticket> findAll(TicketSpec spec) {
-//        return getRepository().findAll(Specification.where(findB));
-//    }
+    @Override
+    public void addTicket(final Ticket ticket) {
+        getRepository().save(ticket);
+    }
+
 }

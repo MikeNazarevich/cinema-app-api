@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -23,25 +22,25 @@ public class MovieController {
     private final MovieMapper mapper;
 
     @GetMapping("/movies")
-    public ResponseEntity<Page<MovieDtoOut>> getAllMoviesPage(MovieFilter filter, Pageable page) {
+    public ResponseEntity<Page<MovieDtoOut>> findAllMoviesPage(MovieFilter filter, Pageable page) {
         return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(filter, page)));
     }
 
     @GetMapping("/movies/{id}")
-    public ResponseEntity<MovieDtoOut> getMovie(@PathVariable Long id) {
+    public ResponseEntity<MovieDtoOut> findMovie(@PathVariable final Long id) {
         return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(id)));
     }
 
     @PostMapping("/movies")
     public ResponseEntity<Void> addMovie(
-            @RequestBody @Valid MovieDtoIn dtoIn) {
+            @RequestBody @Valid final MovieDtoIn dtoIn) {
         service.addMovie(mapper.fromIn(dtoIn));
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/movies/{id}")
-    public ResponseEntity<Void> updateMovie(@PathVariable final Long id, @RequestBody @Valid final Map<String, String> fields) {
-        service.updateMovie(id, fields);
+    @PutMapping("/movies/{id}")
+    public ResponseEntity<Void> updateMovie(@PathVariable final Long id, @RequestBody @Valid final MovieDtoIn dtoIn) {
+        service.updateMovie(id, dtoIn);
         return ResponseEntity.ok().build();
     }
 

@@ -5,17 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class TicketDtoOut {
+public class TicketDtoIn {
 
     private Long row;
     private Long place;
-    private LocalDateTime movieDate;
-    private String movieName;
-
+    private Long movie_session_id;
 }

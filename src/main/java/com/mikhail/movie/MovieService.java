@@ -1,14 +1,13 @@
 package com.mikhail.movie;
 
 import com.mikhail.crudBase.BaseSearchService;
-
-import java.util.Map;
+import com.mikhail.web.dto.movie.MovieDtoIn;
 
 public interface MovieService extends BaseSearchService<Movie, MovieFilter> {
 
-    void addMovie(Movie movie);
+    void addMovie(final Movie movie);
 
-    void updateMovie(Long id, Map<String, String> fields);
+    void updateMovie(final Long id, final MovieDtoIn dtoIn);
 
     void deleteMovie(Long id);
 
