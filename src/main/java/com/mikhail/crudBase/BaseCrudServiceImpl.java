@@ -13,7 +13,7 @@ public abstract class BaseCrudServiceImpl<
 
     @Override
     public void update(Long id, E entity) {
-        E findEntity = repository.findById(id).orElseThrow( );
+        E findEntity = repository.getOne(id);
         repository.save(findEntity);
     }
 

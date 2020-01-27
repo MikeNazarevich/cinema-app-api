@@ -9,7 +9,8 @@ import com.mikhail.web.mapper.MovieMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MovieServiceImpl extends BaseSearchServiceImpl<Movie, MovieFilter, MovieSpec, MovieRepository>
+public class MovieServiceImpl extends
+        BaseSearchServiceImpl<Movie, MovieFilter, MovieSpec, MovieRepository>
         implements MovieService {
 
     private final MovieMapper mapper;
