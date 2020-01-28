@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class TicketController {
     }
 
     @PostMapping("/movieSession/tickets")
-    public ResponseEntity<Void> addTicket(final TicketDtoIn dtoIn) {
+    public ResponseEntity<Void> addTicket(@RequestBody final TicketDtoIn dtoIn) {
         service.addTicket(mapper.fromIn(dtoIn));
         return ResponseEntity.ok().build();
     }

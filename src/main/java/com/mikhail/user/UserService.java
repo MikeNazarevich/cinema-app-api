@@ -1,15 +1,12 @@
 package com.mikhail.user;
 
 import com.mikhail.crudBase.BaseSearchService;
-
-import java.util.Map;
+import com.mikhail.web.dto.user.UserUpdateInfo;
 
 public interface UserService extends BaseSearchService<User, UserFilter> {
 
     void registerUser(final User user);
 
-    void deleteUserById(final Long id);
-
-    void updateUser(final Long id, final Map<String, String> user);
+    void updateUser(final Long id, final UserUpdateInfo user);
 
 }

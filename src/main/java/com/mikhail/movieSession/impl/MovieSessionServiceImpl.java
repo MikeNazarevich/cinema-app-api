@@ -4,30 +4,38 @@ import com.mikhail.crudBase.BaseSearchServiceImpl;
 import com.mikhail.movieSession.MovieSession;
 import com.mikhail.movieSession.MovieSessionFilter;
 import com.mikhail.movieSession.MovieSessionService;
-import com.mikhail.web.dto.movie.MovieDtoIn;
+import com.mikhail.web.dto.movieSession.MovieSessionDtoIn;
+import com.mikhail.web.mapper.MovieSessionMapper;
 import org.springframework.stereotype.Service;
 
 //TODO add logic to methods
 @Service
-public class MovieSessionServiceImpl extends BaseSearchServiceImpl<MovieSession, MovieSessionFilter, MovieSessionSpec, MovieSessionRepository>
+public class MovieSessionServiceImpl
+        extends BaseSearchServiceImpl<MovieSession, MovieSessionFilter, MovieSessionSpec, MovieSessionRepository>
         implements MovieSessionService {
 
-    public MovieSessionServiceImpl(MovieSessionRepository repository, MovieSessionSpec spec) {
+    private final MovieSessionMapper mapper;
+
+    public MovieSessionServiceImpl(MovieSessionRepository repository, MovieSessionSpec spec, MovieSessionMapper mapper) {
         super(repository, spec);
+        this.mapper = mapper;
     }
 
     @Override
-    public void addMovieSession(MovieSession movieSession) {
-
+    public void addMovieSession(final MovieSession movieSession) {
+        getRepository().save(movieSession);
     }
 
     @Override
-    public void updateMovieSession(Long id, MovieDtoIn dtoIn) {
+    public void updateMovieSession(final Long id, final MovieSessionDtoIn dtoIn) {
+        MovieSession movieSession = findOneOrThrow(id);
 
+        mapper.merge(dtoIn, movieSession);
+        getRepository().save(movieSession);
     }
 
     @Override
-    public void deleteMovieSession(Long id) {
-
+    public void deleteMovieSession(final Long id) {
+        getRepository().deleteById(id);
     }
 }
