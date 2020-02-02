@@ -32,6 +32,12 @@ databaseChangeLog:
                  name: description
                  type: text
              - column:
+                 name: created_at
+                 type: TIMESTAMP
+             - column:
+                 name: created_by
+                 type: varchar(100)
+             - column:
                  name: updated_at
                  type: TIMESTAMP
              - column:
@@ -58,6 +64,12 @@ databaseChangeLog:
              - column:
                  name: description
                  value: "The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end."
+             - column:
+                 name: created_at
+                 value: "2020-01-01 09:10:10"
+             - column:
+                 name: created_by
+                 value: mikhail
              - column:
                  name: updated_at
                  value: "2020-01-01 10:10:10"

@@ -45,34 +45,34 @@ repositories {
 project.ext.diffChangelogFile = "src/main/resources/config/liquibase/changelog/" + new Date().format("yyyyMMddHHmmss") + "_changelog.xml"
 
 
-liquibase {
-	activities {
-		main {
-			driver "org.h2.Driver"
-			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
-			username "keycloakApp"
-			password ""
-			changeLogFile "src/main/resources/config/liquibase/master.xml"
-			defaultSchemaName ""
-			logLevel "debug"
-			classpath "src/main/resources/"
-		}
-		diffLog {
-			driver "org.h2.Driver"
-			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
-			username "keycloakApp"
-			password ""
-			changeLogFile project.ext.diffChangelogFile
-			referenceUrl "hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.H2Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-			defaultSchemaName ""
-			logLevel "debug"
-			classpath "$buildDir/classes/java/main"
-			excludeObjects "oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token"
-		}
-	}
-
-//	runList = project.ext.runList
-}
+//liquibase {
+//	activities {
+//		main {
+//			driver "org.h2.Driver"
+//			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
+//			username "keycloakApp"
+//			password ""
+//			changeLogFile "src/main/resources/config/liquibase/master.xml"
+//			defaultSchemaName ""
+//			logLevel "debug"
+//			classpath "src/main/resources/"
+//		}
+//		diffLog {
+//			driver "org.h2.Driver"
+//			url "jdbc:h2:file:./build/h2db/db/keycloakapp"
+//			username "keycloakApp"
+//			password ""
+//			changeLogFile project.ext.diffChangelogFile
+//			referenceUrl "hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.H2Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+//			defaultSchemaName ""
+//			logLevel "debug"
+//			classpath "$buildDir/classes/java/main"
+//			excludeObjects "oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token"
+//		}
+//	}
+//
+////	runList = project.ext.runList
+//}
 
 dependencies {
 	//MapStruct
@@ -99,21 +99,20 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
 
 	// Keycloak
 	implementation 'org.keycloak:keycloak-spring-boot-starter'
 
 	//Test
-//	compile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-//	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-//	compile 'org.mockito:mockito-junit-jupiter:3.0.0'
-//	compile("org.springframework.boot:spring-boot-starter-test") {
-//		exclude group: 'junit', module: 'junit'
-//	}
-	annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-security-test'
+	testImplementation 'org.keycloak:keycloak-test-helper'
 }
 
 dependencyManagement {

@@ -6,3 +6,4 @@ create_db_user_pass() {
 }
 
 create_db_user_pass cinema_db  cinema_user  cinema_pass
+create_db_user_pass keycloak_db  keycloak_user  keycloak_pass

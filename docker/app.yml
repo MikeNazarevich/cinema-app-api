@@ -1,6 +1,7 @@
 version: "3.3"
+
 services:
-  cinema-postgresql:
+  cinema-postgres:
     image: postgres:11.6
     volumes:
       - ./postgres/datadir:/var/lib/postgresql/data
@@ -11,18 +12,17 @@ services:
   keycloak:
     image: jboss/keycloak:8.0.1
     environment:
-      KEYCLOAK_USER: 'admin'
-      KEYCLOAK_PASSWORD: "admin"
-#      KEYCLOAL_IMPORT: '/tmp/realm.json'
-      DB_VENDOR: 'POSTGRES'
-      DB_ADDR: 'postgres'
-      DB_DATABASE: 'cinema_db'
-      DB_USER: 'cinema_user'
-      DB_PASSWORD: 'cinema_pass'
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: cinema_db
+      DB_USER: cinema_user
+      DB_SCHEMA: public
+      DB_PASSWORD: cinema_pass
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
 
-#    volumes:
-#      - ${KEYCLOAK_REALM_JSON}:/tmp/realm.json
     ports:
-      - 8081:8081
+      - 8080:8080
     depends_on:
-      - cinema-postgresql
+      - postgres
