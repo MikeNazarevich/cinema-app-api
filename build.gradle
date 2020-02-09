@@ -90,7 +90,6 @@ dependencies {
 	//Spring
 	implementation 'com.cosium.spring.data:spring-data-jpa-entity-graph:2.2.3'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'

@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  cinema-postgres:
+  postgres:
     image: postgres:11.6
     volumes:
       - ./postgres/datadir:/var/lib/postgresql/data
@@ -15,10 +15,9 @@ services:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
       DB_PORT: 5432
-      DB_DATABASE: cinema_db
-      DB_USER: cinema_user
-      DB_SCHEMA: public
-      DB_PASSWORD: cinema_pass
+      DB_DATABASE: keycloak_db
+      DB_USER: keycloak_user
+      DB_PASSWORD: keycloak_pass
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
 
