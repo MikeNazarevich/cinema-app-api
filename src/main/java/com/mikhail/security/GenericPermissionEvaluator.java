@@ -24,7 +24,6 @@ public class GenericPermissionEvaluator implements PermissionEvaluator {
         return result;
     }
 
-    //we don't use this method yet
     @Override
     public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
         return false;

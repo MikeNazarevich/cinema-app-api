@@ -16,4 +16,5 @@ public abstract class BaseEntityFilter {
     private Instant updatedTo;
     private Instant updatedFrom;
     private List<Long> updatedBy;
+    private List<Long> createdBy;
 }

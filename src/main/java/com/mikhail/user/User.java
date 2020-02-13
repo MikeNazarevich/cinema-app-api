@@ -23,6 +23,7 @@ import java.util.List;
 public class User extends BaseEntity {
 
     @NaturalId
+    @NotBlank
     private String iamId;
 
     @Size(max = 50)
@@ -45,8 +46,6 @@ public class User extends BaseEntity {
     @Email
     @Column(length = 254, nullable = false, unique = true)
     private String email;
-
-
 
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,

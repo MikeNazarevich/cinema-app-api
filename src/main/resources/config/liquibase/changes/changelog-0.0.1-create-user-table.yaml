@@ -16,6 +16,11 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: iamId
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
                   name: name
                   type: varchar(50)
                   constraints:
@@ -58,6 +63,9 @@ databaseChangeLog:
         - insert:
             tableName: users
             columns:
+              - column:
+                  name: iamId
+                  value: "ad2af34"
               - column:
                   name: name
                   value: "Mike"

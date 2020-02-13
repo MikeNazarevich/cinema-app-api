@@ -29,4 +29,9 @@ public class UserServiceImpl extends BaseSearchServiceImpl<User, UserFilter, Use
 
         getRepository().save(user);
     }
+
+    @Override
+    public User findByIamId(String iamId) {
+        return null;
+    }
 }

@@ -27,11 +27,20 @@ public abstract class BaseSpec<T extends BaseEntity, F extends BaseEntityFilter>
 
     protected void addPredicatesToList(F filter, Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates) {
 
+        addIfNotNull(predicates, filter.getCreatedFrom(),
+                () -> cb.greaterThanOrEqualTo(root.get(BaseEntity_.createdAt), filter.getCreatedFrom()));
+
+        addIfNotNull(predicates, filter.getCreatedTo(),
+                () -> cb.lessThanOrEqualTo(root.get(BaseEntity_.createdAt), filter.getCreatedTo()));
+
         addIfNotNull(predicates, filter.getUpdatedFrom(),
                 () -> cb.greaterThanOrEqualTo(root.get(BaseEntity_.updatedAt), filter.getUpdatedFrom()));
 
         addIfNotNull(predicates, filter.getUpdatedTo(),
                 () -> cb.lessThanOrEqualTo(root.get(BaseEntity_.updatedAt), filter.getUpdatedTo()));
+
+        addIfNotNull(predicates, filter.getCreatedBy(),
+                () -> root.get(BaseEntity_.createdBy).in(filter.getCreatedBy()));
 
         addIfNotNull(predicates, filter.getUpdatedBy(),
                 () -> root.get(BaseEntity_.updatedBy).in(filter.getUpdatedBy()));

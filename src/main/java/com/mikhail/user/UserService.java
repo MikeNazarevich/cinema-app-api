@@ -9,4 +9,6 @@ public interface UserService extends BaseSearchService<User, UserFilter> {
 
     void updateUser(final Long id, final UserUpdateInfo user);
 
+    User findByIamId(final String iamId);
+
 }
