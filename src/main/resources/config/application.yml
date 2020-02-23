@@ -25,12 +25,11 @@ spring:
     change-log: classpath:db/master.yaml
 
 keycloak:
-  realm: SpringBootKeycloak
-  auth-server-url: http://127.0.0.1:8080/auth
+  realm: cinema
+  auth-server-url: http://127.0.0.1:8181/auth
   ssl-required: external
-  resource: login-app
+  resource: cinema-app
   credentials.secret: 11111111-1111-1111-1111-111111111111
-  use-resource-role-mappings: true
 
 server:
-  port: 8081
+  port: 8080

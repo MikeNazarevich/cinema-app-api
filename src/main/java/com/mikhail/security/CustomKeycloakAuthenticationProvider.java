@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 class CustomKeycloakAuthenticationProvider extends KeycloakAuthenticationProvider {
@@ -24,12 +26,16 @@ class CustomKeycloakAuthenticationProvider extends KeycloakAuthenticationProvide
         KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) authentication.getPrincipal();
         String iamId = keycloakPrincipal.getKeycloakSecurityContext().getToken().getSubject();
 
-        User user = userService.findByIamId(iamId);
+        Optional<User> user = userService.findByIamId(iamId);
 
-        // create user if user is null
+        if (!user.isPresent()) {
+
+            // create user if user is null
+        }
+
 
         CustomKeycloakAuthenticationToken enrichedToken = new CustomKeycloakAuthenticationToken(
-                token.getAccount(), token.isInteractive(), token.getAuthorities(), user.getId());
+                token.getAccount(), token.isInteractive(), token.getAuthorities(), user.get().getId());
 
         return enrichedToken;
     }

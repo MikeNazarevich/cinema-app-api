@@ -8,6 +8,8 @@ import com.mikhail.web.dto.user.UserUpdateInfo;
 import com.mikhail.web.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl extends BaseSearchServiceImpl<User, UserFilter, UserSpec, UserRepository>
         implements UserService {
@@ -31,7 +33,7 @@ public class UserServiceImpl extends BaseSearchServiceImpl<User, UserFilter, Use
     }
 
     @Override
-    public User findByIamId(String iamId) {
-        return null;
+    public Optional<User> findByIamId(String iamId) {
+        return getRepository().findByIamId(iamId);
     }
 }

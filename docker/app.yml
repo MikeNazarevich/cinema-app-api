@@ -11,6 +11,9 @@ services:
 
   keycloak:
     image: jboss/keycloak:8.0.1
+    command: ["-b", "0.0.0.0", "--debug"]
+    volumes:
+      - ${KEYCLOAK_REALM_JSON}:/tmp/realm-export.json
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -20,8 +23,10 @@ services:
       DB_PASSWORD: keycloak_pass
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
+      KEYCLOAK_IMPORT: '/tmp/realm-export.json'
 
     ports:
-      - 8080:8080
+      - 8181:8080
+      - 6006:8787
     depends_on:
       - postgres

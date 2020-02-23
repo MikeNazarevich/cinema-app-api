@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,9 @@ public class TicketController {
     private final TicketService service;
     private final TicketMapper mapper;
 
-    @PreAuthorize("hasRole(USER) && hasPermission(#filter.userId, 'authBelongsToUserId')")
+    @PreAuthorize("hasRole('user') && hasPermission(#filter.userId, 'authBelongsToUserId')")
     @GetMapping("/tickets")
-    public ResponseEntity<List<TicketDtoOut>> findAll(TicketFilter filter) {
+    public ResponseEntity<List<TicketDtoOut>> findAll(Principal principal, TicketFilter filter) {
         return ResponseEntity.ok().body(mapper.toOut(service.findAll(filter)));
     }
 
