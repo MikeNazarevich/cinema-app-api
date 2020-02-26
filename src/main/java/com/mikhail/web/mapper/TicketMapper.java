@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface TicketMapper extends DtoMapper<Object, TicketDtoOut, Ticket> {
 
+//    @Mapping(target = "movieDate", source = "movieSession.movieDate")
+//    @Mapping(target = "movieName", source = "movieSession.movieDate")
     List<TicketDtoOut> toOut(List<Ticket> ticket);
 
 }

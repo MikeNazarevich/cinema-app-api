@@ -17,6 +17,8 @@ public interface BaseSearchService<
 
     Page<E> findAllPage(Pageable pageable, EntityGraph entityGraph);
 
+    Page<E> findAllPage(F filter, Pageable pageable, EntityGraph entityGraph);
+
     List<E> findAll();
 
     List<E> findAll(F filter);

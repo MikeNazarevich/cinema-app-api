@@ -16,7 +16,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: iamId
+                  name: iam_id
                   type: text
                   constraints:
                     nullable: false
@@ -64,7 +64,7 @@ databaseChangeLog:
             tableName: users
             columns:
               - column:
-                  name: iamId
+                  name: iam_id
                   value: "ad2af34"
               - column:
                   name: name

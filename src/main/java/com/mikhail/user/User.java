@@ -24,6 +24,7 @@ public class User extends BaseEntity {
 
     @NaturalId
     @NotBlank
+    @Column(name = "iam_Id", unique = true, nullable = false)
     private String iamId;
 
     @Size(max = 50)

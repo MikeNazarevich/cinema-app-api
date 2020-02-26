@@ -10,7 +10,7 @@ public interface DtoMapper<IN, OUT, T> {
 
     T fromIn(IN in);
 
-    List<OUT> toOut(List<T> tList);
+    List<OUT> toOut(Iterable<T> tList);
 
     default Page<OUT> toOut(Page<T> page) {
         return page.map(this::toOut);

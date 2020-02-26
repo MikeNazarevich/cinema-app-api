@@ -54,6 +54,12 @@ public abstract class BaseSearchServiceImpl<
     }
 
     @Override
+    public Page<E> findAllPage(F filter, Pageable pageable, EntityGraph graph) {
+        Specification<E> specification = spec.build(filter);
+        return repository.findAll(specification, pageable, graph);
+    }
+
+    @Override
     public List<E> findAll() {
         return repository.findAll();
     }

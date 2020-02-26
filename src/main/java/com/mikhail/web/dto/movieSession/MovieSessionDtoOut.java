@@ -15,5 +15,5 @@ public class MovieSessionDtoOut {
 
     private LocalDateTime movieDate;
 
-    private Long movieId;
+    private String movieName;
 }

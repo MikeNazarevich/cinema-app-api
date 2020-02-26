@@ -1,5 +1,6 @@
 package com.mikhail.web;
 
+import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import com.mikhail.movieSession.MovieSessionFilter;
 import com.mikhail.movieSession.MovieSessionService;
 import com.mikhail.web.dto.movieSession.MovieSessionDtoIn;
@@ -22,7 +23,7 @@ public class MovieSessionController {
 
     @GetMapping("/sessions")
     public ResponseEntity<Page<MovieSessionDtoOut>> findAllMovieSessionsPage(MovieSessionFilter filter, Pageable page) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(filter, page)));
+        return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(filter, page, EntityGraphs.named("Session.movie"))));
     }
 
     @GetMapping("/sessions/{id}")

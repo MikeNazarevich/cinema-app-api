@@ -19,13 +19,6 @@ import java.util.List;
 @Setter
 @Table(name = "movie")
 @Entity
-@NamedEntityGraph(
-        name = "Movie.movieSession",
-        attributeNodes = @NamedAttributeNode("movieSession")
-)
-//@NamedEntityGraph(name = "Movie.description",
-//        attributeNodes = @NamedAttributeNode("description")
-//)
 public class Movie extends BaseEntity {
 
     @Size(max = 100)

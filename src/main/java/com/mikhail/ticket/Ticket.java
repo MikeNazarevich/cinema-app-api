@@ -17,8 +17,12 @@ import javax.persistence.*;
 @Table(name = "ticket")
 @Entity
 @NamedEntityGraph(
-        name = "Ticket.all",
-        attributeNodes = {}
+        name = "Ticket.user",
+        attributeNodes = @NamedAttributeNode("user")
+)
+@NamedEntityGraph(
+        name = "Ticket.movieSession",
+        attributeNodes = @NamedAttributeNode("movieSession")
 )
 public class Ticket extends BaseEntity {
 

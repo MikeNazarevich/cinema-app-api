@@ -38,4 +38,5 @@ public class MovieSessionServiceImpl
     public void deleteMovieSession(final Long id) {
         getRepository().deleteById(id);
     }
+
 }

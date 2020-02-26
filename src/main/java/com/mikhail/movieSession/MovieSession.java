@@ -18,6 +18,21 @@ import java.util.List;
 @Setter
 @Table(name = "movie_session")
 @Entity
+@NamedEntityGraph(
+        name = "Session.movie",
+        attributeNodes = @NamedAttributeNode("movie")
+)
+@NamedEntityGraph(
+        name = "Session.tickets",
+        attributeNodes = @NamedAttributeNode("tickets")
+)
+@NamedEntityGraph(
+        name = "Session.all",
+        attributeNodes = {
+                @NamedAttributeNode("movie"),
+                @NamedAttributeNode("tickets")
+        }
+)
 public class MovieSession extends BaseEntity {
 
     @Column(name = "movie_date")
