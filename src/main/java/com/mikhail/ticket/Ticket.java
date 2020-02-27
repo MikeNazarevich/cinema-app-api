@@ -22,7 +22,13 @@ import javax.persistence.*;
 )
 @NamedEntityGraph(
         name = "Ticket.movieSession",
-        attributeNodes = @NamedAttributeNode("movieSession")
+        attributeNodes = @NamedAttributeNode(value = "movieSession", subgraph = "movieSession.movie"),
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "movieSession.movie",
+                        attributeNodes = @NamedAttributeNode("movie")
+                )
+        }
 )
 public class Ticket extends BaseEntity {
 

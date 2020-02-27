@@ -1,5 +1,6 @@
 package com.mikhail.web;
 
+import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import com.mikhail.ticket.TicketFilter;
 import com.mikhail.ticket.TicketService;
 import com.mikhail.web.dto.ticket.TicketDtoIn;
@@ -29,7 +30,7 @@ public class TicketController {
 //    @PreAuthorize("hasRole('user') && hasPermission(#filter.userId, 'authBelongsToUserId')")
     @GetMapping("/tickets")
     public ResponseEntity<List<TicketDtoOut>> findAll(/*Principal principal,*/ TicketFilter filter) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findAll(filter)));
+        return ResponseEntity.ok().body(mapper.toOut(service.findAll(filter, EntityGraphs.named("Ticket.movieSession"))));
     }
 
     @PostMapping("/tickets")
