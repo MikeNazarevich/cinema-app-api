@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,18 +32,21 @@ public class MovieSessionController {
         return ResponseEntity.ok().body(mapper.toOut(service.findOneOrThrow(id)));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/sessions")
     public ResponseEntity<Void> addMovieSession(@RequestBody @Valid final MovieSessionDtoIn dtoIn) {
         service.addMovieSession(mapper.fromIn(dtoIn));
         return ResponseEntity.ok().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/sessions/{id}")
     public ResponseEntity<Void> updateMovieSession(@PathVariable final Long id, @RequestBody @Valid final MovieSessionDtoIn dtoIn) {
         service.updateMovieSession(id, dtoIn);
         return ResponseEntity.ok().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/sessions/{id}")
     public ResponseEntity<Void> deleteMovieSession(@PathVariable final Long id) {
         service.deleteMovieSession(id);

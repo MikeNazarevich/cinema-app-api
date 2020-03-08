@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class MovieSessionDtoIn {
 
     @NotBlank
-    private LocalDateTime movieDate;
+    private Instant movieDate;
 
     @NotBlank
     private Long movieId;

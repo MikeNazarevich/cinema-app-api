@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @NoArgsConstructor
@@ -36,7 +36,7 @@ import java.util.List;
 public class MovieSession extends BaseEntity {
 
     @Column(name = "movie_date")
-    private LocalDateTime movieDate;
+    private Instant movieDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 public class MovieSessionDtoOut {
 
-    private LocalDateTime movieDate;
+    private Instant movieDate;
 
     private String movieName;
 }
