@@ -20,5 +20,5 @@ public class TicketDtoIn {
     private Long place;
 
     @NotBlank
-    private Long movie_session_id;
+    private Long movieSessionId;
 }

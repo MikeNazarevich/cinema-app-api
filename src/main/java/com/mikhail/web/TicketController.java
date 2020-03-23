@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,9 @@ public class TicketController {
     }
 
     @PostMapping("/tickets")
-    public ResponseEntity<Void> addTicket(@RequestBody final TicketDtoIn dtoIn) {
+    public ResponseEntity<Void> addTicket(HttpServletRequest request, @RequestBody final TicketDtoIn dtoIn) {
+//        SecurityContextHolder.getContext().getAuthentication().getName()
+//        CustomKeycloakAuthenticationProvider.getCurrentUserLogin()
         service.addTicket(mapper.fromIn(dtoIn));
         return ResponseEntity.ok().build();
     }

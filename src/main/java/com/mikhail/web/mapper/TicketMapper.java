@@ -2,6 +2,7 @@ package com.mikhail.web.mapper;
 
 import com.mikhail.crudBase.DtoMapper;
 import com.mikhail.ticket.Ticket;
+import com.mikhail.web.dto.ticket.TicketDtoIn;
 import com.mikhail.web.dto.ticket.TicketDtoOut;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -17,5 +18,8 @@ public interface TicketMapper extends DtoMapper<Object, TicketDtoOut, Ticket> {
     TicketDtoOut toOut(Ticket ticket);
 
     List<TicketDtoOut> toOut(List<Ticket> ticket);
+
+    @Mapping(target = "movieSession.id", source = "movieSessionId")
+    Ticket fromIn(TicketDtoIn dtoIn);
 
 }
