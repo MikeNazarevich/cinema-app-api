@@ -34,16 +34,14 @@ public class MovieController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/movies")
-    public ResponseEntity<Void> addMovie(
-            @RequestBody @Valid final MovieDtoIn dtoIn) {
-        service.addMovie(mapper.fromIn(dtoIn));
-        return ResponseEntity.ok().build();
+    public ResponseEntity<MovieDtoOut> addMovie(@RequestBody @Valid final MovieDtoIn dtoIn) {
+        return ResponseEntity.ok().body(mapper.toOut(service.addMovie(mapper.fromIn(dtoIn))));
     }
 
     @PutMapping("/movies/{id}")
-    public ResponseEntity<Void> updateMovie(@PathVariable final Long id, @RequestBody @Valid final MovieDtoIn dtoIn) {
+    public ResponseEntity<MovieDtoOut> updateMovie(@PathVariable final Long id, @RequestBody @Valid final MovieDtoIn dtoIn) {
         service.updateMovie(id, dtoIn);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(mapper.toOut(service.updateMovie(id, dtoIn)));
     }
 
     @PreAuthorize("hasRole('ADMIN')")

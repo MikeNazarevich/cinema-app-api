@@ -20,15 +20,15 @@ public class MovieServiceImpl extends
         this.mapper = mapper;
     }
 
-    public void addMovie(Movie movie) {
-        getRepository().save(movie);
+    public Movie addMovie(final Movie movie) {
+        return getRepository().save(movie);
     }
 
-    public void updateMovie(final Long id, final MovieDtoIn dtoIn) {
+    public Movie updateMovie(final Long id, final MovieDtoIn dtoIn) {
         Movie movie = findOneOrThrow(id);
 
         mapper.merge(dtoIn, movie);
-        getRepository().save(movie);
+        return getRepository().save(movie);
     }
 
     public void deleteMovie(final Long id) {

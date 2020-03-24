@@ -22,16 +22,16 @@ public class MovieSessionServiceImpl
     }
 
     @Override
-    public void addMovieSession(final MovieSession movieSession) {
-        getRepository().save(movieSession);
+    public MovieSession addMovieSession(final MovieSession movieSession) {
+        return getRepository().save(movieSession);
     }
 
     @Override
-    public void updateMovieSession(final Long id, final MovieSessionDtoIn dtoIn) {
+    public MovieSession updateMovieSession(final Long id, final MovieSessionDtoIn dtoIn) {
         MovieSession movieSession = findOneOrThrow(id);
 
         mapper.merge(dtoIn, movieSession);
-        getRepository().save(movieSession);
+        return getRepository().save(movieSession);
     }
 
     @Override

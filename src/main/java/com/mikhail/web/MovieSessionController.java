@@ -34,16 +34,14 @@ public class MovieSessionController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/sessions")
-    public ResponseEntity<Void> addMovieSession(@RequestBody @Valid final MovieSessionDtoIn dtoIn) {
-        service.addMovieSession(mapper.fromIn(dtoIn));
-        return ResponseEntity.ok().build();
+    public ResponseEntity<MovieSessionDtoOut> addMovieSession(@RequestBody @Valid final MovieSessionDtoIn dtoIn) {
+        return ResponseEntity.ok().body(mapper.toOut(service.addMovieSession(mapper.fromIn(dtoIn))));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/sessions/{id}")
-    public ResponseEntity<Void> updateMovieSession(@PathVariable final Long id, @RequestBody @Valid final MovieSessionDtoIn dtoIn) {
-        service.updateMovieSession(id, dtoIn);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<MovieSessionDtoOut> updateMovieSession(@PathVariable final Long id, @RequestBody @Valid final MovieSessionDtoIn dtoIn) {
+        return ResponseEntity.ok().body(mapper.toOut(service.updateMovieSession(id, dtoIn)));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
