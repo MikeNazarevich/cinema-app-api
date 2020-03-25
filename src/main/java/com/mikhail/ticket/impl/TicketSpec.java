@@ -18,6 +18,7 @@ public class TicketSpec extends BaseSpec<Ticket, TicketFilter> {
 
     @Override
     protected void addSelfPredicatesToList(TicketFilter filter, Root<Ticket> root, CriteriaQuery<?> query, CriteriaBuilder cb, List<Predicate> predicates) {
+
         addIfNotNull(predicates, filter, () -> cb.equal(root.get(Ticket_.user).get(BaseEntity_.id), filter.getUserId()));
 
         addIfNotNull(predicates, filter, () -> cb.equal(root.get(Ticket_.movieSession).get(BaseEntity_.id), filter.getMovieSessionId()));

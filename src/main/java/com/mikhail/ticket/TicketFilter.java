@@ -10,5 +10,4 @@ public class TicketFilter extends BaseEntityFilter {
 
     private Long movieSessionId;
     private Long userId;
-
 }

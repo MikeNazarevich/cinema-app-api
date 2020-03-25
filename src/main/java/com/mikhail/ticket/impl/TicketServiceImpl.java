@@ -31,13 +31,13 @@ public class TicketServiceImpl extends BaseSearchServiceImpl<Ticket, TicketFilte
         Optional<User> user = userService.findByIamId(iamId);
         user.ifPresent(ticket::setUser);
 
-        if (checkSeats(ticket.getMovieSession().getId()) <= seatsNum)
+        if (countBusyPlaces(ticket.getMovieSession().getId()) <= seatsNum)
             return getRepository().save(ticket);
         else return null;
     }
 
     @Override
-    public Long checkSeats(Long movieSessionId) {
+    public Long countBusyPlaces(Long movieSessionId) {
         return getRepository().countTicketsByMovieSessionId(movieSessionId);
     }
 

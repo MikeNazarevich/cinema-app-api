@@ -6,5 +6,5 @@ public interface TicketService extends BaseSearchService<Ticket, TicketFilter> {
 
     Ticket addTicket(Ticket ticket);
 
-    Long checkSeats(Long movieSessionId);
+    Long countBusyPlaces(Long movieSessionId);
 }

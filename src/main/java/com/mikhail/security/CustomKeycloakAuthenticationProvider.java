@@ -27,7 +27,6 @@ public class CustomKeycloakAuthenticationProvider extends KeycloakAuthentication
         AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
         String iamId = accessToken.getSubject();
 
-
         Optional<User> user = userService.findByIamId(iamId);
 
         if (user.isEmpty())
@@ -40,10 +39,6 @@ public class CustomKeycloakAuthenticationProvider extends KeycloakAuthentication
     public static String getCurrentUserLogin() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
-
-//    public Long getCurrentUserId() {
-//        return SecurityContextHolder.getContext().getAuthentication().get
-//    }
 
     private User createNewUser(AccessToken accessToken) {
         return User.builder()

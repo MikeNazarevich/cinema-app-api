@@ -1,6 +1,5 @@
 package com.mikhail.web;
 
-import com.mikhail.movie.MovieFilter;
 import com.mikhail.movie.MovieService;
 import com.mikhail.web.dto.movie.MovieDtoIn;
 import com.mikhail.web.dto.movie.MovieDtoOut;
@@ -23,8 +22,8 @@ public class MovieController {
     private final MovieMapper mapper;
 
     @GetMapping("/movies")
-    public ResponseEntity<Page<MovieDtoOut>> findAllMoviesPage(MovieFilter filter, Pageable page) {
-        return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(filter, page)));
+    public ResponseEntity<Page<MovieDtoOut>> findAllMoviesPage(Pageable page) {
+        return ResponseEntity.ok().body(mapper.toOut(service.findAllPage(page)));
     }
 
     @GetMapping("/movies/{id}")
