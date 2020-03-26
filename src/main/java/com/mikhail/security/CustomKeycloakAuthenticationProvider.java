@@ -27,10 +27,8 @@ public class CustomKeycloakAuthenticationProvider extends KeycloakAuthentication
         AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
         String iamId = accessToken.getSubject();
 
-        Optional<User> user = userService.findByIamId(iamId);
-
-        if (user.isEmpty())
-            user = Optional.ofNullable(userService.saveUser(createNewUser(accessToken)));
+        Optional<User> user = Optional.ofNullable(userService.findByIamId(iamId)
+                .orElseGet(() -> userService.saveUser(createNewUser(accessToken))));
 
         return new CustomKeycloakAuthenticationToken(
                 token.getAccount(), token.isInteractive(), token.getAuthorities(), user.get().getId());

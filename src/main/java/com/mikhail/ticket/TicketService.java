@@ -4,7 +4,7 @@ import com.mikhail.crudBase.BaseSearchService;
 
 public interface TicketService extends BaseSearchService<Ticket, TicketFilter> {
 
-    Ticket addTicket(Ticket ticket);
+    Ticket addTicket(Ticket ticket) throws Exception;
 
     Long countBusyPlaces(Long movieSessionId);
 }

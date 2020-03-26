@@ -26,14 +26,14 @@ public class TicketServiceImpl extends BaseSearchServiceImpl<Ticket, TicketFilte
     }
 
     @Override
-    public Ticket addTicket(@NotNull final Ticket ticket) {
+    public Ticket addTicket(@NotNull final Ticket ticket) throws Exception {
         String iamId = CustomKeycloakAuthenticationProvider.getCurrentUserLogin();
         Optional<User> user = userService.findByIamId(iamId);
         user.ifPresent(ticket::setUser);
 
         if (countBusyPlaces(ticket.getMovieSession().getId()) <= seatsNum)
             return getRepository().save(ticket);
-        else return null;
+        else throw new Exception("Session is busy, try another one");
     }
 
     @Override

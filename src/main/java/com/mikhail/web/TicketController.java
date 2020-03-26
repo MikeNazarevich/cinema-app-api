@@ -37,7 +37,7 @@ public class TicketController {
 
     @PostMapping("/tickets")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<TicketDtoOut> addTicket(@RequestBody final TicketDtoIn dtoIn) {
+    public ResponseEntity<TicketDtoOut> addTicket(@RequestBody final TicketDtoIn dtoIn) throws Exception {
         return ResponseEntity.ok().body(mapper.toOut(service.addTicket(mapper.fromIn(dtoIn))));
     }
 
